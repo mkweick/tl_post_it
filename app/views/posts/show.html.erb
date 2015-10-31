@@ -1,0 +1,26 @@
+<%= render 'shared/content_title', title: @post.title %>
+
+<%= @post.description %>
+<hr/>
+
+<%= form_for [@post, @comment] do |f| %>
+  <%= render 'shared/errors', obj: @comment %>
+  <div class='control-group'>
+    <%= f.label 'Leave a comment:' %>
+    <%= f.text_area :body, rows: 5, class: 'span4' %>
+  </div>
+  
+  <%= f.submit 'Create Comment', class: 'btn btn-primary' %>
+<% end %>
+  
+<h5>Comments:</h5>
+  
+<% @post.comments.reverse.each do |comment| %>
+  <div class='well span8'>
+    <em>"<%= comment.body %>"</em>
+    <p class='create-date'>
+      <%= link_to comment.creator.username, '#' %> --- 
+      <%= time_ago_in_words(comment.created_at) %> ago
+    </p>
+  </div>
+<% end %>

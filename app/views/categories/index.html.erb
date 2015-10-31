@@ -1,0 +1,9 @@
+<%= render 'shared/content_title', title: 'Categories' %>
+
+<div class='well'>
+  <ul>
+    <% @categories.each do |ctg| %>
+      <li><%= ctg.name %></li>
+    <% end %>
+  </ul>
+</div>
