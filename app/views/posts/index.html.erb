@@ -12,5 +12,9 @@
       <%= link_to post.creator.username, '#' %> --- 
       <%= time_ago_in_words(post.created_at) %> ago
     </p>
+    <%#= link_to 'Edit Post', edit_post_path(post), class: 'btn btn-primary' %>
+    <%#= link_to 'Delete Post', post,  method: :delete,
+                                      confirm: 'Did you mean to delete post?', 
+                                      class: 'btn' %>
   </div>
 <% end %>
