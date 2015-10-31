@@ -1,5 +1,5 @@
 class PostsController < ApplicationController
-  before_action :set_post, only: [:edit, :show, :update, :destroy]
+  before_action :set_post, only: [:show, :edit, :update]
   
   def index
     @posts = Post.all.sort_by(&:created_at).reverse
@@ -22,6 +22,7 @@ class PostsController < ApplicationController
   
   def show
     @comment = Comment.new
+    @comments = @post.comments.reverse
   end
   
   def edit; end
@@ -32,11 +33,6 @@ class PostsController < ApplicationController
     else
       render :edit
     end
-  end
-  
-  def destroy
-    @post.delete
-    redirect_to posts_path
   end
   
   private

@@ -42,10 +42,72 @@ div.comment_votes {
   padding: 10px;
 }
 
-.create-date {
-  font-size: 12px;
+///////* POSTS *////////////
+
+.post {
+  .new-edit {
+    .title {
+      width: 300px;
+    }
+    .url {
+      width: 300px;
+    }
+    .description {
+      height: 150px;
+      width: 500px;
+    }
+  }
+  .list {
+    .title {
+      font-size: 28px;
+      text-decoration: none;
+    }
+    .title-info {
+      font-size: 11px;
+      .name {
+        text-decoration: none;
+      }
+    }
+    .comment-count {
+      font-size: 12px;
+      text-decoration: none;
+    }
+    hr {
+      margin: 10px 0 20px;
+    }
+  }
+  .page-title {
+    margin-top: 20px;
+    .title {
+      font-size: 45px;
+    }
+    .title-info {
+      font-size: 12px;
+    }
+    .url {
+      text-decoration: none;
+    }
+    .name {
+      text-decoration: none;
+      font-weight: bold;
+    }
+    .date {
+      margin-left: 12px;
+    }
+  }
+  .page {
+    .comment-info {
+      font-size: 11px;
+    }
+  }
 }
 
-.comments {
-  font-size: 12px;
+///////* CATEGORIES *////////////
+
+.category {
+  .new {
+    .name {
+      width: 350px;
+    }
+  }
 }

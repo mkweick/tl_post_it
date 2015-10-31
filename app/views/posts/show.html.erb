@@ -1,26 +1,42 @@
-<%= render 'shared/content_title', title: @post.title %>
-
-<%= @post.description %>
-<hr/>
-
-<%= form_for [@post, @comment] do |f| %>
-  <%= render 'shared/errors', obj: @comment %>
-  <div class='control-group'>
-    <%= f.label 'Leave a comment:' %>
-    <%= f.text_area :body, rows: 5, class: 'span4' %>
+<div class='span7 post'>
+  <div class='page-title'>
+    <span class='title'><%= @post.title %></span>
+    <br/><br/>
+    <div class='title-info'>
+      Website: <%= link_to @post.url, @post.url, class: 'url' %>
+      <br/>
+      By: <%= link_to @post.creator.username.upcase, '#', class: 'name' %>
+      <span class='date'>
+        <%= @post.created_at.to_date.to_formatted_s(:long).upcase %>
+      </span>
+    </div>
+    <hr/>
   </div>
-  
-  <%= f.submit 'Create Comment', class: 'btn btn-primary' %>
-<% end %>
-  
-<h5>Comments:</h5>
-  
-<% @post.comments.reverse.each do |comment| %>
-  <div class='well span8'>
-    <em>"<%= comment.body %>"</em>
-    <p class='create-date'>
-      <%= link_to comment.creator.username, '#' %> --- 
-      <%= time_ago_in_words(comment.created_at) %> ago
-    </p>
+
+  <div class='page'>
+    <%= @post.description %>
+    <hr/>
+    
+    <%= form_for [@post, @comment] do |f| %>
+      <%= render 'shared/errors', obj: @comment %>
+      <div class='control-group'>
+        <%= f.label 'Leave a comment:' %>
+        <%= f.text_area :body, rows: 5, class: 'span4' %>
+      </div>
+      
+      <%= f.submit 'Create Comment', class: 'btn btn-primary' %>
+    <% end %>
+      
+    <h5>Comments:</h5>
+      
+    <% @comments.each do |comment| %>
+      <div class='well span6'>
+        <em>"<%= comment.body %>"</em>
+        <p class='comment-info'>
+          <%= link_to comment.creator.username, '#' %> - 
+          <%= time_ago_in_words(comment.created_at) %> ago
+        </p>
+      </div>
+    <% end %>
   </div>
-<% end %>
+</div>
