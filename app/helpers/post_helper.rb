@@ -4,11 +4,11 @@ module PostHelper
     post.new_record?
   end
   
-  def post_type(post)
+  def new_or_edit(post)
     new_post?(post) ? 'Create Post' : 'Update Post'
   end
   
-  def cancel_btn_if_edit(post)
+  def cancel_btn_for_edit(post)
     link_to 'Cancel', post_path(post), class: 'btn' if !new_post?(post)
   end
   

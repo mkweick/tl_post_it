@@ -1,6 +1,11 @@
 <div class='span8 post'>
   <div class='page-title'>
     <span class='title'><%= @post.title %></span>
+    <%= link_to 'Delete', @post, method: 'delete',
+                        confirm: 'Are you sure you want to delete this post?',
+                        class: 'btn btn-mini btn-danger pull-right' %>
+    <%= link_to 'Edit', edit_post_path(@post), 
+                        class: 'btn btn-mini btn-info pull-right' %>
     <br/><br/>
     <div class='title-info'>
       Website: <%= link_to @post.url, fix_external_url(@post.url), 
@@ -26,7 +31,7 @@
         <%= f.text_area :body, rows: 5, class: 'span4' %>
       </div>
       
-      <%= f.submit 'Create Comment', class: 'btn btn-primary' %>
+      <%= f.submit 'Create Comment', class: 'btn btn-small btn-primary' %>
     <% end %>
       
     <h5>Comments:</h5>
