@@ -1,4 +1,4 @@
-<div class='well span7 post'>
+<div class='well span8 post'>
   <div class="new-edit">
     <%= form_for @post do |f| %>
       <div class='control-group'>
@@ -16,8 +16,16 @@
         <%= f.text_area :description, class: 'description' %>
       </div>
       
-      <%= f.submit ( f.object.new_record? ? 'Create Post' : 'Update Post'),
-                                    class: 'btn btn-primary' %>
+      <div class='control-group'>
+        <%= f.collection_check_boxes :category_ids, nav_categories,
+                                                      :id, :name do |ctg| %>
+          <%= ctg.label(class: 'checkbox inline') { 
+                              ctg.check_box(class: 'checkbox') + ctg.text } %>
+        <% end %>
+      </div><br/>
+      
+      <%= f.submit (post_type(@post)), class: 'btn btn-primary' %>
+      <%= cancel_btn_if_edit(@post) %>
     <% end %>
   </div>
 </div>

@@ -22,14 +22,14 @@ class PostsController < ApplicationController
   
   def show
     @comment = Comment.new
-    @comments = @post.comments.reverse
+    @comments = @post.comments.sort_by(&:created_at).reverse
   end
   
   def edit; end
   
   def update
     if @post.update_attributes(post_params)
-      redirect_to posts_path
+      redirect_to post_path
     else
       render :edit
     end
@@ -42,6 +42,6 @@ class PostsController < ApplicationController
   end
     
   def post_params
-    params.require(:post).permit(:title, :url, :description)
+    params.require(:post).permit(:title, :url, :description, category_ids: [])
   end
 end

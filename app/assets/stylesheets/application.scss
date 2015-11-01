@@ -42,6 +42,12 @@ div.comment_votes {
   padding: 10px;
 }
 
+/////* PAGE TITLE */////////
+
+h3 .nav_link {
+  text-decoration: none;
+}
+
 ///////* POSTS *////////////
 
 .post {
@@ -53,14 +59,24 @@ div.comment_votes {
       width: 300px;
     }
     .description {
-      height: 150px;
-      width: 500px;
+      height: 100px;
+      width: 600px;
     }
   }
   .list {
     .title {
       font-size: 28px;
       text-decoration: none;
+    }
+    .badge {
+      background-color: #A5A5A5;
+    }
+    .badge:hover {
+      background-color: #777777;
+    }
+    .ctg {
+      text-decoration: none;
+      color: white;
     }
     .title-info {
       font-size: 11px;
@@ -81,6 +97,16 @@ div.comment_votes {
     .title {
       font-size: 45px;
     }
+    .badge {
+      background-color: #A5A5A5;
+    }
+    .badge:hover {
+      background-color: #777777;
+    }
+    .ctg {
+      text-decoration: none;
+      color: white;
+    }
     .title-info {
       font-size: 12px;
     }
@@ -98,6 +124,9 @@ div.comment_votes {
   .page {
     .comment-info {
       font-size: 11px;
+      .name {
+        text-decoration: none;
+      }
     }
   }
 }

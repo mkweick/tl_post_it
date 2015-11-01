@@ -1,3 +1,3 @@
-<%= render 'shared/content_title', title: @category.name %>
+<%= render 'shared/content_title', title: category_title(@category) %>
 
-All posts associated with the category <%= @category.name %> will be displayed here.
+<%= render 'posts/display_posts', obj: @category.posts %>

@@ -1,14 +1,16 @@
-<div class='span7 post'>
+<div class='span8 post'>
   <div class='page-title'>
     <span class='title'><%= @post.title %></span>
     <br/><br/>
     <div class='title-info'>
-      Website: <%= link_to @post.url, @post.url, class: 'url' %>
+      Website: <%= link_to @post.url, fix_external_url(@post.url), 
+                                      target: "_blank", class: 'url' %>
       <br/>
       By: <%= link_to @post.creator.username.upcase, '#', class: 'name' %>
       <span class='date'>
-        <%= @post.created_at.to_date.to_formatted_s(:long).upcase %>
+        <%= format_date(@post) %>
       </span>
+      <%= render 'categories/category_tags', post_obj: @post %>
     </div>
     <hr/>
   </div>
@@ -28,15 +30,16 @@
     <% end %>
       
     <h5>Comments:</h5>
-      
-    <% @comments.each do |comment| %>
-      <div class='well span6'>
-        <em>"<%= comment.body %>"</em>
-        <p class='comment-info'>
-          <%= link_to comment.creator.username, '#' %> - 
-          <%= time_ago_in_words(comment.created_at) %> ago
-        </p>
-      </div>
+    <% if !@comments.nil? %>
+      <% @comments.each do |comment| %>
+        <div class='well span6'>
+          <em>"<%= comment.body %>"</em>
+          <p class='comment-info'>
+            <%= link_to comment.creator.username, '#', class: 'name' %> - 
+            <%= time_ago_in_words(comment.created_at) %> ago
+          </p>
+        </div>
+      <% end %>
     <% end %>
   </div>
 </div>

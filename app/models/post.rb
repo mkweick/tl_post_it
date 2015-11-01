@@ -4,7 +4,7 @@ class Post < ActiveRecord::Base
   has_many :post_categories, dependent: :destroy
   has_many :categories, through: :post_categories
   
-  validates :title, presence: true, length: { minimum: 6 }
+  validates :title, presence: true, length: { minimum: 6, maximum: 30 }
   validates :url, presence: true
   validates :description, presence: true
 end

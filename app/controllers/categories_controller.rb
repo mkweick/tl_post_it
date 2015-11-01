@@ -1,4 +1,5 @@
 class CategoriesController < ApplicationController
+  before_action :set_category, only: [:show]
   
   def new
     @category = Category.new
@@ -8,17 +9,21 @@ class CategoriesController < ApplicationController
     @category = Category.new(category_params)
     
     if @category.save
-      redirect_to categories_path
+      redirect_to category_path(@category)
     else
       render :new
     end
   end
   
   def show
-    @category = Category.find(params[:id])
+    @posts = @category.posts.sort_by(&:created_at).reverse
   end
   
   private
+  
+  def set_category
+    @category = Category.find(params[:id])
+  end
   
   def category_params
     params.require(:category).permit(:name)

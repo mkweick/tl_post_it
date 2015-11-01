@@ -1,0 +1,19 @@
+<div class="post">
+  <% obj.each do |post| %>
+    <div class='well span8 list'>
+      <%= link_to post.title, post_path(post), class: 'title' %>
+      <%= render 'categories/category_tags', post_obj: post %>
+      </br>
+      <span class="title-info">  
+        Posted by: <%= link_to post.creator.username, '#', class: 'name' %> - 
+        <%= time_ago_in_words(post.created_at) %> ago
+      </span>
+      <hr/>
+      <%= post.description %>
+      <br/>
+      <br/>
+      <%= link_to "#{ post.comments.size } Comments", post_path(post),
+                                                      class: 'comment-count' %>
+    </div>
+  <% end %>
+</div>

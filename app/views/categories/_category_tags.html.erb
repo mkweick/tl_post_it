@@ -1,0 +1,9 @@
+<% if categories?(post_obj) %>
+  <ul class='pull-right'>
+    <% post_obj.categories.each do |ctg| %>
+      <li class="badge">
+        <%= link_to ctg.name, category_path(ctg), class: 'ctg' %>
+      </li>
+    <% end %>
+  </ul>
+<% end %>

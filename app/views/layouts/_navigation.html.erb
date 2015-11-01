@@ -6,7 +6,7 @@
       Categories <span class='caret'></span>
     <% end %>
     <ul class='dropdown-menu'>
-      <% Category.all.each do |ctg| %>
+      <% nav_categories.each do |ctg| %>
         <li><%= link_to ctg.name, category_path(ctg) %></li>
       <% end %>
       <li class='divider'></li>

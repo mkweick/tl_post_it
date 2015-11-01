@@ -1,25 +1,3 @@
 <%= render 'shared/content_title', title: 'All Posts' %>
 
-<div class="post">
-  <% @posts.each do |post| %>
-    <div class='well span6 list'>
-      <%= link_to post.title, post_path(post), class: 'title' %>
-      </br>
-      <span class="title-info">  
-        Posted by: <%= link_to post.creator.username.titleize, '#', 
-                                                  class: 'name' %> - 
-        <%= time_ago_in_words(post.created_at) %> ago
-      </span>
-      <hr/>
-      <%= post.description %>
-      <br/>
-      <br/>
-      <%= link_to "#{ post.comments.size } Comments", post_path(post),
-                                                      class: 'comment-count' %>
-      <%#= link_to 'Edit Post', edit_post_path(post), class: 'btn btn-primary' %>
-      <%#= link_to 'Delete Post', post,  method: :delete,
-                                        confirm: 'Did you mean to delete post?', 
-                                        class: 'btn' %>
-    </div>
-  <% end %>
-</div>
+<%= render 'display_posts', obj: @posts %>
