@@ -2,7 +2,7 @@ class PostsController < ApplicationController
   before_action :set_post, only: [:show, :edit, :update]
   
   def index
-    @posts = Post.all.sort_by(&:created_at).reverse
+    @posts = Post.all.order(:created_at).reverse
   end
   
   def new
@@ -22,7 +22,7 @@ class PostsController < ApplicationController
   
   def show
     @comment = Comment.new
-    @comments = @post.comments.sort_by(&:created_at).reverse
+    @comments = @post.comments.order(:created_at).reverse
   end
   
   def edit; end

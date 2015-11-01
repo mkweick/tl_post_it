@@ -16,7 +16,7 @@ class CategoriesController < ApplicationController
   end
   
   def show
-    @posts = @category.posts.sort_by(&:created_at).reverse
+    @posts = @category.posts.order(:created_at).reverse
   end
   
   private
