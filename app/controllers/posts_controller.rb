@@ -2,7 +2,7 @@ class PostsController < ApplicationController
   before_action :set_post, only: [:show, :edit, :update]
   
   def index
-    @posts = Post.all.order(:created_at).reverse
+    @posts = Post.all.recent
   end
   
   def new
@@ -22,13 +22,13 @@ class PostsController < ApplicationController
   
   def show
     @comment = Comment.new
-    @comments = @post.comments.order(:created_at).reverse
+    @comments = @post.comments.recent
   end
   
   def edit; end
   
   def update
-    if @post.update_attributes(post_params)
+    if @post.update(post_params)
       redirect_to post_path
     else
       render :edit

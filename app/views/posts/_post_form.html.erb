@@ -17,6 +17,7 @@
       </div>
       
       <div class='control-group'>
+        <%= f.label :categories %>
         <%= f.collection_check_boxes :category_ids, nav_categories,
                                                       :id, :name do |ctg| %>
           <%= ctg.label(class: 'checkbox inline') { 
