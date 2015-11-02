@@ -8,5 +8,7 @@
 
 User.create username: 'Matt Weick'
 
-categories = Category.create([{ name: 'Food' }, { name: 'Sports' },
-                              { name: 'Travel' }])
+categories = Category.create([{ name: 'Food' }, { name: 'Programming' },
+                              { name: 'Sports' }, { name: 'Travel' },
+                              { name: 'Exercise' }, { name: 'Culture' },
+                              { name: 'News' }, { name: 'Weather' }])
