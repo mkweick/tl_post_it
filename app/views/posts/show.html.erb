@@ -24,20 +24,18 @@
     <%= @post.description %>
     <hr/>
     
-    <%= form_for [@post, @comment] do |f| %>
-      <%= render 'shared/errors', obj: @comment %>
-      <div class='control-group'>
-        <%= f.label 'Leave a comment:' %>
-        <%= f.text_area :body, rows: 5, class: 'span4' %>
-      </div>
-      
-      <%= f.submit 'Create Comment', class: 'btn btn-small btn-primary' %>
-    <% end %>
+    <%= render 'comments/comment_form' %>
       
     <h5>Comments:</h5>
     <% if !@comments.nil? %>
       <% @comments.each do |comment| %>
         <div class='well span6'>
+          <%= link_to 'Delete', post_comment_path(@post, comment), 
+                        method: 'delete',
+                        confirm: 'Are you sure you want to delete this post?',
+                        class: 'btn btn-mini btn-danger pull-right' %>
+          <%= link_to 'Edit', edit_post_comment_path(@post, comment), 
+                        class: 'btn btn-mini btn-info pull-right' %>
           <em>"<%= comment.body %>"</em>
           <p class='comment-info'>
             <%= link_to comment.creator.username, '#', class: 'name' %> - 
