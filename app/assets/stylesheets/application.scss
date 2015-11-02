@@ -125,6 +125,13 @@ h3 .nav_link {
     }
   }
   .page {
+    .body {
+      height: 100px;
+      width: 500px;
+    }
+    .pull-right {
+      margin-left: 3px;
+    }
     .comment-info {
       font-size: 11px;
       .name {
@@ -132,6 +139,12 @@ h3 .nav_link {
       }
     }
   }
+}
+
+///////* COMMENTS *////////////
+.body {
+  height: 100px;
+  width: 500px;
 }
 
 ///////* CATEGORIES *////////////
