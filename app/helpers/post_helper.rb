@@ -1,15 +1,7 @@
 module PostHelper
   
-  def new_post?(post)
-    post.new_record?
-  end
-  
-  def new_or_edit(post)
-    new_post?(post) ? 'Create Post' : 'Update Post'
-  end
-  
-  def cancel_btn_for_edit(post)
-    link_to 'Cancel', post_path(post), class: 'btn' if !new_post?(post)
+  def post_btn_text(post)
+    post.new_record? ? 'Create Post' : 'Update Post'
   end
   
   def categories?(post)

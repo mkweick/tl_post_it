@@ -25,9 +25,9 @@
         <% end %>
       </div><br/>
       
-      <%= f.submit (new_or_edit(@post)), class: 'btn btn-small btn-primary' %>
+      <%= f.submit (post_btn_text(@post)), class: 'btn btn-small btn-primary' %>
       <%= link_to 'Cancel', post_path(@post), 
-                            class: 'btn btn-small' if !new_post?(@post) %>
+                            class: 'btn btn-small' unless @post.new_record? %>
     <% end %>
   </div>
 </div>
