@@ -1,0 +1,32 @@
+<div class='well span5 user'>
+  <div class='new-edit-login'>
+    <%= form_for @user do |f| %>
+      <div class='control-group'>
+        <%= f.label :username %>
+        <%= f.text_field :username, class: 'username' %>
+      </div>
+      
+      <div class='control-group'>
+        <%= f.label :password %>
+        <%= f.password_field :password, class: 'password' %>
+      </div>
+      
+      <div class='control-group'>
+        <%= f.label :first_name %>
+        <%= f.text_field :first_name, class: 'first-name' %>
+      </div>
+      
+      <div class='control-group'>
+        <%= f.label :last_name %>
+        <%= f.text_field :last_name, class: 'last-name' %>
+      </div>
+      
+      <div class='control-group'>
+        <%= f.label :email %>
+        <%= f.email_field :email, class: 'email' %>
+      </div>
+      
+      <%= f.submit user_btn_text(@user), class: 'btn btn-small btn-primary' %>
+    <% end %>
+  </div>
+</div>

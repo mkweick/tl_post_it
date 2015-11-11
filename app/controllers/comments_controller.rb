@@ -1,10 +1,14 @@
 class CommentsController < ApplicationController
   before_action :set_post, only: [:create, :edit, :update, :destroy]
   before_action :set_comment, only: [:edit, :update, :destroy]
+  before_action :require_user, only: [:create, :vote]
+  before_action only: [:edit, :update, :destroy] do
+    require_obj_owner(@comment)
+  end
 
   def create
     @comment = @post.comments.build(comment_params)
-    @comment.creator = User.first #Fix after authentication
+    @comment.creator = current_user
     
     if @comment.save
       redirect_to post_path(@post)
@@ -28,6 +32,10 @@ class CommentsController < ApplicationController
   def destroy
     @comment.destroy
     redirect_to post_path(@post)
+  end
+  
+  def vote
+    
   end
   
   private

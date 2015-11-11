@@ -1,0 +1,54 @@
+<%= render 'shared/content_title', title: "#{@user.first_name} 
+                                            #{@user.last_name}" %>
+
+<div class='span8'>
+  <div class='well'>
+    <%= gravatar_for(@user, size: 110) %>
+    <table class='user-info'>
+      <col width='130'>
+      <tr>
+        <td><strong>Name:</strong></td>
+        <td><%= "#{@user.first_name} #{@user.last_name}" %></td>
+      </tr>
+      <tr>
+        <td><strong>Member Since:</strong></td>
+        <td><%= format_date(@user) %></td>
+      </tr>
+      <tr>
+        <td><strong>Total Posts:</strong></td>
+        <td><%= @user.posts.count %></td>
+      </tr>
+      <tr>
+        <td><strong>Total Comments:</strong></td>
+        <td><%= @user.comments.count %></td>
+      </tr>
+      <tr>
+        <td><strong>Latest Post:</strong></td>
+        <td><%= get_recent_post(@user) %></td>
+      </tr>
+    </table>
+  </div>
+  <br/>
+  <h4>Activity:</h4>
+</div>
+
+<div class='span9'>
+  <ul class='nav nav-tabs'>
+    <li class='active'><a href='#posts' data-toggle='tab'>
+      Posts (<%= @user.posts.size %>)
+    </a></li>
+    <li><a href='#comments' data-toggle='tab'>
+      Comments (<%= @user.comments.size %>)
+    </a></li>
+  </ul>
+  <div class='tab-content'>
+    <div class='tab-pane active' id='posts'>
+      <%= render 'posts/display_posts', obj: @posts, hide_profile_image: true %>
+    </div>
+    <div class='tab-pane' id='comments'>
+      <%= render 'comments/display_comments', obj: @comments,
+                                              hide_profile_image: true,
+                                              show_post_link: true %>
+    </div>
+  </div>
+</div>

@@ -1,5 +1,9 @@
 class PostsController < ApplicationController
   before_action :set_post, only: [:show, :edit, :update, :destroy]
+  before_action :require_user, only: [:new, :create, :vote]
+  before_action only: [:edit, :update, :destroy] do
+    require_obj_owner(@post)
+  end
   
   def index
     @posts = Post.all.recent
@@ -11,7 +15,7 @@ class PostsController < ApplicationController
   
   def create
     @post = Post.new(post_params)
-    @post.creator = User.first # Fix after authentication
+    @post.creator = current_user
     
     if @post.save
       redirect_to posts_path
@@ -40,13 +44,17 @@ class PostsController < ApplicationController
     redirect_to posts_path
   end
   
+  def vote
+    
+  end
+  
   private
+  
+  def post_params
+    params.require(:post).permit(:title, :url, :description, category_ids: [])
+  end
   
   def set_post
     @post = Post.find(params[:id])
-  end
-    
-  def post_params
-    params.require(:post).permit(:title, :url, :description, category_ids: [])
   end
 end

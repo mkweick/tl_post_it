@@ -1,0 +1,34 @@
+<% hide_profile_image ||= false %>
+<% show_post_link ||= false %>
+
+<% obj.each do |comment| %>
+  <div class='well span6 comments'>
+    <% unless hide_profile_image %>
+      <%= link_to gravatar_for(comment.creator, size: 35),
+                                user_path(comment.creator) %>
+    <% end %>
+    <% if current_user == comment.creator %>
+      <%= link_to 'Delete', post_comment_path(comment.post_id, comment), 
+                          method: 'delete',
+                          confirm: 'Are you sure you want to delete this post?',
+                          class: 'btn btn-mini btn-danger pull-right' %>
+      <%= link_to 'Edit', edit_post_comment_path(comment.post_id, comment), 
+                          class: 'btn btn-mini btn-info pull-right' %>
+    <% end %>
+    <em>"<%= comment.body %>"</em>
+    <br/><br/>
+    <p class='comment-info'>
+      <%= link_to author_name(comment), user_path(comment.creator), 
+                                                      class: 'name' %>
+      <% if show_post_link %>
+        <span class='post'>  
+          commented on post <%= link_to comment.post.title, 
+                                    post_path(comment.post),
+                                    class: 'post-link' %>
+        </span>
+      <% end %>
+      - <%= time_ago_in_words(comment.created_at) %> ago
+    </p>
+    <p><%= render 'shared/user_votes', obj: comment %></p>
+  </div>
+<% end %>

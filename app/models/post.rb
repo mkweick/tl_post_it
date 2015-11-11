@@ -3,11 +3,21 @@ class Post < ActiveRecord::Base
   has_many :comments, dependent: :destroy
   has_many :post_categories, dependent: :destroy
   has_many :categories, through: :post_categories
+  has_many :votes, as: :voteable, dependent: :destroy
+  
   validates :title, presence: true, length: { minimum: 6, maximum: 30 }
   validates :url, presence: true
   validates :description, presence: true
   
   def self.recent
-    order('created_at DESC')
+    order(created_at: :desc)
+  end
+  
+  def total_votes
+    self.votes.where(vote: true).size
+  end
+  
+  def user_voted?(current_user)
+    self.votes.where(user_id: current_user).any?
   end
 end

@@ -26,7 +26,7 @@
   color: #ababab;
 }
 
-div.nav_item {
+div.nav-item {
   margin-left: 25px;
   float: left;
 }
@@ -42,9 +42,18 @@ div.comment_votes {
   padding: 10px;
 }
 
+.nav .dropdown-toggle .caret {
+  border-top-color: #000000;
+  border-bottom-color: #000000;
+}
+
+//////* NAV BAR *///////////
+
+
+
 /////* PAGE TITLE */////////
 
-h3 .nav_link {
+h3 .nav-link {
   text-decoration: none;
 }
 
@@ -68,6 +77,9 @@ h3 .nav_link {
       font-size: 28px;
       text-decoration: none;
     }
+    .pull-right {
+      margin-left: 3px;
+    }
     .badge {
       background-color: #A5A5A5;
     }
@@ -84,15 +96,14 @@ h3 .nav_link {
         text-decoration: none;
       }
     }
-    .comment-count {
-      font-size: 12px;
-      text-decoration: none;
+    .vote-comment-space {
+      margin-right: 3px;
     }
     hr {
       margin: 10px 0 20px;
     }
   }
-  .page-title {
+  .post-title {
     margin-top: 20px;
     .title {
       font-size: 45px;
@@ -124,19 +135,10 @@ h3 .nav_link {
       margin-left: 12px;
     }
   }
-  .page {
+  .post-info {
     .body {
       height: 100px;
       width: 500px;
-    }
-    .pull-right {
-      margin-left: 3px;
-    }
-    .comment-info {
-      font-size: 11px;
-      .name {
-        text-decoration: none;
-      }
     }
   }
 }
@@ -145,6 +147,61 @@ h3 .nav_link {
 .body {
   height: 100px;
   width: 500px;
+}
+
+.comments {
+  .pull-right {
+    margin-left: 3px;
+  }
+  .comment-info {
+    font-size: 11px;
+  }
+  .name {
+    text-decoration: none;
+  }
+  .post {
+    font-size: 12px;
+  }
+  .post-link {
+    text-decoration: none;
+  }
+}
+
+/////////* USERS *///////////////
+.user {
+  .new-edit-login {
+    .username {
+      width: 360px;
+    }
+    .password {
+      width: 360px;
+    }
+    .last-name {
+      width: 360px;
+    }
+    .first-name {
+      width: 360px;
+    }
+    .email {
+      width: 360px;
+    }
+  }
+}
+
+.gravatar-link {
+  text-decoration: none;
+}
+
+.gravatar {
+  float: left;
+  margin-right: 20px;
+}
+
+.user-info {
+  display: inline-block;
+  .latest-post {
+    text-decoration: none;
+  }
 }
 
 ///////* CATEGORIES *////////////

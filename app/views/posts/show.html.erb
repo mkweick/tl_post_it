@@ -1,17 +1,21 @@
 <div class='span8 post'>
-  <div class='page-title'>
+  <div class='post-title'>
+    <%= link_to gravatar_for(@post.creator, size: 70), user_path(@post.creator) %>
     <span class='title'><%= @post.title %></span>
-    <%= link_to 'Delete', @post, method: 'delete',
-                        confirm: 'Are you sure you want to delete this post?',
-                        class: 'btn btn-mini btn-danger pull-right' %>
-    <%= link_to 'Edit', edit_post_path(@post), 
-                        class: 'btn btn-mini btn-info pull-right' %>
-    <br/><br/>
+    <% if current_user == @post.creator %>
+      <%= link_to 'Delete', @post, method: 'delete',
+                          confirm: 'Are you sure you want to delete this post?',
+                          class: 'btn btn-mini btn-danger pull-right' %>
+      <%= link_to 'Edit', edit_post_path(@post), 
+                          class: 'btn btn-mini btn-info pull-right' %>
+      <br/>
+    <% end %>
     <div class='title-info'>
       Website: <%= link_to @post.url, fix_external_url(@post.url), 
                                       target: "_blank", class: 'url' %>
       <br/>
-      By: <%= link_to @post.creator.username.upcase, '#', class: 'name' %>
+      By: <%= link_to author_name_caps(@post), user_path(@post.creator),
+                                                          class: 'name' %>
       <span class='date'>
         <%= format_date(@post) %>
       </span>
@@ -20,29 +24,18 @@
     <hr/>
   </div>
 
-  <div class='page'>
+  <div class='post-info'>
     <%= @post.description %>
     <hr/>
     
-    <%= render 'comments/comment_form' %>
-      
+    <% if logged_in? %>
+      <%= render 'comments/comment_form' %>
+    <% end %>
+    
     <h5>Comments:</h5>
-    <% if !@comments.nil? %>
-      <% @comments.each do |comment| %>
-        <div class='well span6'>
-          <%= link_to 'Delete', post_comment_path(@post, comment), 
-                        method: 'delete',
-                        confirm: 'Are you sure you want to delete this post?',
-                        class: 'btn btn-mini btn-danger pull-right' %>
-          <%= link_to 'Edit', edit_post_comment_path(@post, comment), 
-                        class: 'btn btn-mini btn-info pull-right' %>
-          <em>"<%= comment.body %>"</em>
-          <p class='comment-info'>
-            <%= link_to comment.creator.username, '#', class: 'name' %> - 
-            <%= time_ago_in_words(comment.created_at) %> ago
-          </p>
-        </div>
-      <% end %>
+    <% unless @comments.nil? %>
+      <%= render 'comments/display_comments', obj: @comments, comment_post: nil,
+                                                              user_page: nil %>
     <% end %>
   </div>
 </div>
