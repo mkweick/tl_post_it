@@ -9,10 +9,9 @@ class SessionsController < ApplicationController
     
     if user && user.authenticate(params[:password])
       session[:user_id] = user.id
-      flash['error'] = nil
       redirect_to root_path
     else
-      flash['error'] = "You have entered an invalid username or password"
+      flash.now['error'] = "You have entered an invalid username or password"
       render :new
     end
   end
