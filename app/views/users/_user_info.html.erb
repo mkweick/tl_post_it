@@ -1,0 +1,29 @@
+<table class='user-info'>
+  <col width='130'>
+  <tr>
+    <td><strong>Name:</strong></td>
+    <td><%= "#{@user.first_name} #{@user.last_name}" %></td>
+  </tr>
+  <tr>
+    <td><strong>Member Since:</strong></td>
+    <td><%= format_date(@user) %></td>
+  </tr>
+  <tr>
+    <td><strong>Total Posts:</strong></td>
+    <td><%= @user.posts.count %></td>
+  </tr>
+  <tr>
+    <td><strong>Total Comments:</strong></td>
+    <td><%= @user.comments.count %></td>
+  </tr>
+  <tr>
+    <td><strong>Latest Post:</strong></td>
+    <td>
+        <% if @user.posts.any? %>
+          <%= get_recent_post(@user) %>
+        <% else %>
+          <%= @user.first_name %> has no posts
+        <% end %>
+    </td>
+  </tr>
+</table>

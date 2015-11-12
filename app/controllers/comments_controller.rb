@@ -39,14 +39,8 @@ class CommentsController < ApplicationController
   end
   
   def vote
-    @vote = Vote.create(user_id: current_user.id, voteable: @comment)
-    
-    if @vote.valid?
-      redirect_to :back
-    else
-      flash['error'] = "Something went wrong, try to vote again"
-      redirect_to :back
-    end
+    @vote = Vote.create(creator: current_user, voteable: @comment)
+    redirect_to :back
   end
   
   def vote_delete
@@ -65,7 +59,7 @@ class CommentsController < ApplicationController
   end
   
   def set_vote
-    @vote = Vote.find_by(user_id: current_user.id, voteable: @comment)
+    @vote = Vote.find_by(creator: current_user, voteable: @comment)
   end
   
   def comment_params

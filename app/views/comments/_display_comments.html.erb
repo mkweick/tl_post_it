@@ -1,19 +1,20 @@
 <% hide_profile_image ||= false %>
 <% show_post_link ||= false %>
 
-<% obj.each do |comment| %>
+<% @comments.each do |comment| %>
   <div class='well span6 comments'>
     <% unless hide_profile_image %>
       <%= link_to gravatar_for(comment.creator, size: 35),
                                 user_path(comment.creator) %>
     <% end %>
+    
     <% if current_user == comment.creator %>
-      
       <%= render 'shared/edit_delete_links', obj: comment, comment: true %>
-      
     <% end %>
+    
     <em>"<%= comment.body %>"</em>
     <br/><br/>
+    
     <p class='comment-info'>
       <%= link_to author_name(comment), user_path(comment.creator), 
                                                       class: 'name' %>
@@ -24,8 +25,10 @@
                                     class: 'post-link' %>
         </span>
       <% end %>
+      
       - <%= time_ago_in_words(comment.created_at) %> ago
     </p>
+    
     <p><%= render 'shared/user_votes', obj: comment, comment: true %></p>
   </div>
 <% end %>

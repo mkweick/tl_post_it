@@ -1,7 +1,7 @@
 module ApplicationHelper
   
   def nav_categories
-    Category.all.sort_by(&:name)
+    Category.all.alphabetize
   end
   
   def fix_external_url(url)

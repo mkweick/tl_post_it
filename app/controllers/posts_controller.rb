@@ -49,14 +49,8 @@ class PostsController < ApplicationController
   end
   
   def vote
-    @vote = Vote.create(user_id: current_user.id, voteable: @post)
-    
-    if @vote.valid?
-      redirect_to :back
-    else
-      flash['error'] = "Something went wrong, try to vote again"
-      redirect_to :back
-    end
+    @vote = Vote.create(creator: current_user, voteable: @post)
+    redirect_to :back
   end
   
   def vote_delete
@@ -75,6 +69,6 @@ class PostsController < ApplicationController
   end
   
   def set_vote
-    @vote = Vote.find_by(user_id: current_user.id, voteable: @post)
+    @vote = Vote.find_by(creator: current_user, voteable: @post)
   end
 end

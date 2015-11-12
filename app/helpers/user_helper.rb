@@ -9,11 +9,7 @@ module UserHelper
   end
   
   def get_recent_post(user)
-    if user.posts.any?
-      link_to user.posts.recent.first.title, post_path(user.posts.recent.first),
+    link_to user.posts.recent.first.title, post_path(user.posts.recent.first),
                                                             class: 'latest-post'
-    else
-      "User has not posted anything yet"
-    end
   end
 end

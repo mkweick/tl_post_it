@@ -22,6 +22,6 @@ class Post < ActiveRecord::Base
   end
   
   def user_voted?(current_user)
-    self.votes.where(user_id: current_user).any?
+    self.votes.where(creator: current_user).any?
   end
 end

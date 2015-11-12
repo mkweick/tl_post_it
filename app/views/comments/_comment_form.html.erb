@@ -1,10 +1,14 @@
 <%= form_for [@post, @comment] do |f| %>
+
   <%= render 'shared/errors', obj: @comment %>
+  
   <div class='control-group'>
     <%= f.label :body, (comment_body_text(@comment)) %>
     <%= f.text_area :body, class: 'body' %>
   </div>
   
   <%= f.submit (comment_btn_text(@comment)), class: 'btn btn-small btn-primary' %>
+  
   <%= link_to 'Cancel', :back, class: 'btn btn-small' unless @comment.new_record? %>
+  
 <% end %>

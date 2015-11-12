@@ -7,12 +7,14 @@
       <i class='icon-thumbs-up icon-blue'></i>
       <%= obj.total_votes %>
     <% end %>
+    
   <% else %>
     <%= link_to vote_post_or_comment(obj, comment), method: 'post', 
                                                 class: 'btn btn-mini' do %>
       <% if obj.total_votes > 0 %>
         <i class='icon-thumbs-up'></i>
         <%= obj.total_votes %>
+        
       <% else %>
         <i class='icon-thumbs-up'></i>
       <% end %>
