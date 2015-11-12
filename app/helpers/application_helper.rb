@@ -23,4 +23,12 @@ module ApplicationHelper
     image_tag(gravatar_url, alt: "#{user.first_name}_#{user.last_name}_Image", 
                                                               class: "gravatar")
   end
+  
+  def vote_post_or_comment(obj, comment)
+    if comment
+      vote_post_comment_path(obj.post_id, obj)
+    else
+      vote_post_path(obj)
+    end
+  end
 end

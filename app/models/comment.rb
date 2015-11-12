@@ -5,12 +5,12 @@ class Comment < ActiveRecord::Base
   
   validates :body, presence: true
   
-  def self.recent
-    order(created_at: :desc)
+  def self.votes_then_recent
+    order(votes_count: :desc, created_at: :desc)
   end
   
   def total_votes
-    self.votes.where(vote: true).size
+    self.votes.size
   end
   
   def user_voted?(current_user)

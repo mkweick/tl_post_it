@@ -23,8 +23,9 @@ ActiveRecord::Schema.define(version: 20151111022943) do
     t.integer  "user_id"
     t.integer  "post_id"
     t.text     "body"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.integer  "votes_count", default: 0
+    t.datetime "created_at",              null: false
+    t.datetime "updated_at",              null: false
   end
 
   create_table "post_categories", force: true do |t|
@@ -39,22 +40,22 @@ ActiveRecord::Schema.define(version: 20151111022943) do
     t.string   "title"
     t.string   "url"
     t.text     "description"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.integer  "votes_count", default: 0
+    t.datetime "created_at",              null: false
+    t.datetime "updated_at",              null: false
   end
 
   create_table "users", force: true do |t|
     t.string   "username"
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
     t.string   "password_digest"
     t.string   "first_name"
     t.string   "last_name"
     t.string   "email"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
   end
 
   create_table "votes", force: true do |t|
-    t.boolean  "vote"
     t.integer  "user_id"
     t.string   "voteable_type"
     t.integer  "voteable_id"

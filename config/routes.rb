@@ -12,11 +12,13 @@ PostitTemplate::Application.routes.draw do
   resources :posts do
     member do
       post '/vote', to: 'posts#vote'
+      delete '/vote', to: 'posts#vote_delete'
     end
     
     resources :comments, only: [:create, :edit, :update, :destroy] do
       member do
         post '/vote', to: 'comments#vote'
+        delete '/vote', to: 'comments#vote_delete'
       end
     end
   end

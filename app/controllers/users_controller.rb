@@ -21,8 +21,8 @@ class UsersController < ApplicationController
   end
   
   def show
-    @posts = @user.posts.recent
-    @comments = @user.comments.recent
+    @posts = @user.posts.votes_then_recent
+    @comments = @user.comments.votes_then_recent
   end
   
   def edit
@@ -40,8 +40,8 @@ class UsersController < ApplicationController
   private
   
   def user_params
-    params.require(:user).permit(:username, :password, :first_name, 
-                                  :last_name, :email)
+    params.require(:user).permit(:username, :password, :password_confirmation,
+                                              :first_name, :last_name, :email)
   end
   
   def set_user

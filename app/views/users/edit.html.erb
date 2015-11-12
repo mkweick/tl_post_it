@@ -13,8 +13,11 @@
       <strong>Update/Change your Gravatar Photo</strong>
     </a>
   </div>
+  <div class='alert'>
+    Password Reset capability coming soon!
+  </div>
 
   <%= render 'shared/errors', obj: @user %>
 
-  <%= render 'user_form' %>
+  <%= render 'user_form', hide_password_fields: true %>
 </div>

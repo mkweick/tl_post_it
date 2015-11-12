@@ -5,6 +5,7 @@ class CreatePosts < ActiveRecord::Migration
       t.string :title
       t.string :url
       t.text :description
+      t.integer :votes_count, default: 0
       t.timestamps null: false
     end
   end

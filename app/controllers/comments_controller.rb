@@ -1,9 +1,13 @@
 class CommentsController < ApplicationController
-  before_action :set_post, only: [:create, :edit, :update, :destroy]
-  before_action :set_comment, only: [:edit, :update, :destroy]
+  before_action :set_post, except: [:index, :new, :show]
+  before_action :set_comment, except: [:index, :new, :create, :show]
+  before_action :set_vote, only: [:vote_delete]
   before_action :require_user, only: [:create, :vote]
   before_action only: [:edit, :update, :destroy] do
     require_obj_owner(@comment)
+  end
+  before_action only: [:vote_delete] do
+    require_obj_owner(@vote)
   end
 
   def create
@@ -14,13 +18,13 @@ class CommentsController < ApplicationController
       redirect_to post_path(@post)
     else
       @post.reload
-      @comments = @post.comments.recent
+      @comments = @post.comments.votes_then_recent
       render 'posts/show'
     end
   end
   
   def edit; end
-
+  
   def update
     if @comment.update(comment_params)
       redirect_to post_path(@post)
@@ -35,7 +39,19 @@ class CommentsController < ApplicationController
   end
   
   def vote
+    @vote = Vote.create(user_id: current_user.id, voteable: @comment)
     
+    if @vote.valid?
+      redirect_to :back
+    else
+      flash['error'] = "Something went wrong, try to vote again"
+      redirect_to :back
+    end
+  end
+  
+  def vote_delete
+    @vote.destroy
+    redirect_to :back
   end
   
   private
@@ -46,6 +62,10 @@ class CommentsController < ApplicationController
   
   def set_comment
     @comment = @post.comments.find(params[:id])
+  end
+  
+  def set_vote
+    @vote = Vote.find_by(user_id: current_user.id, voteable: @comment)
   end
   
   def comment_params
