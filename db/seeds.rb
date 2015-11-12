@@ -8,5 +8,5 @@
 
 categories = Category.create([{ name: 'Food' }, { name: 'Programming' },
                               { name: 'Sports' }, { name: 'Travel' },
-                              { name: 'Exercise' }, { name: 'Culture' },
-                              { name: 'News' }, { name: 'Weather' }])
+                              { name: 'Exercise' }, { name: 'News' }, 
+                              { name: 'Weather' }])
