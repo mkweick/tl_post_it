@@ -50,12 +50,19 @@ class PostsController < ApplicationController
   
   def vote
     @vote = Vote.create(creator: current_user, voteable: @post)
-    redirect_to :back
+    
+    respond_to do |format|
+      format.html { redirect_to :back }
+      format.js
+    end
   end
   
   def vote_delete
     @vote.destroy
-    redirect_to :back
+    respond_to do |format|
+      format.html { redirect_to :back }
+      format.js
+    end
   end
   
   private

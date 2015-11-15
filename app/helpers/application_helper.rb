@@ -31,4 +31,8 @@ module ApplicationHelper
       vote_post_path(obj)
     end
   end
+  
+  def vote_id_name(obj, comment)
+    comment ? "comment-#{obj.id}-votes" : "post-#{obj.id}-votes"
+  end
 end
