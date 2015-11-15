@@ -4,7 +4,10 @@ class User < ActiveRecord::Base
   has_many :votes, dependent: :destroy
   
   validates :username, presence: true, length: { minimum: 3 }, 
-                                        uniqueness: { case_sensitive: false }
+                                uniqueness: { case_sensitive: false },
+                                format: { with: /\A[a-zA-Z0-9_]+\Z/,
+                                          message: "can only include letters, 
+                                          numbers, and underscores" }
   validates_presence_of :password, :on => :create
   has_secure_password
   validates :password, on: :create, length: { minimum: 8 }
