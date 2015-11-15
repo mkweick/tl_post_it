@@ -15,6 +15,10 @@ class User < ActiveRecord::Base
   validates :last_name, presence: true
   validates :email, presence: true, uniqueness: { case_sensitive: false }
   
+  def to_param
+    self.username
+  end
+  
   def first_name=(s)
     write_attribute(:first_name, s.to_s.capitalize)
   end
@@ -22,4 +26,5 @@ class User < ActiveRecord::Base
   def last_name=(s)
     write_attribute(:last_name, s.to_s.capitalize)
   end
+
 end
