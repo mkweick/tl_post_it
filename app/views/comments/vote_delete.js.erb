@@ -1,0 +1,8 @@
+$('#comment-<%= @comment.id %>-vote').html(
+  '<%= link_to vote_post_comment_path(@post, @comment), method: "post",
+                                                    remote: true,
+                                                    class: "btn btn-mini" do %>\
+    <i class="icon-thumbs-up"></i>\
+    <%= @comment.reload.votes_count %>\
+  <% end %>'
+);

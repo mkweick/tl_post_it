@@ -9,10 +9,6 @@ class Comment < ActiveRecord::Base
     order(votes_count: :desc, created_at: :desc)
   end
   
-  def total_votes
-    self.votes.size
-  end
-  
   def user_voted?(current_user)
     self.votes.where(user_id: current_user).any?
   end

@@ -2,28 +2,28 @@
 
 <% if logged_in? %>
   <% if obj.user_voted?(current_user) %>
-    <%= link_to vote_post_or_comment(obj, comment), method: 'delete',
-                                                remote: true,
-                                                class: 'btn btn-mini' do %>
-      <i class='icon-thumbs-up icon-blue'></i>
-      <span id=<%= vote_id_name(obj, comment) %>>
-        <%= obj.total_votes %>
-      </span>
-    <% end %>
+    <span id="<%= vote_html_id(obj, comment) %>-vote">
+      <%= link_to vote_post_or_comment(obj, comment), method: 'delete',
+                                                  remote: true,
+                                                  class: 'btn btn-mini' do %>
+        <i class='icon-thumbs-up icon-blue'></i>
+        <%= obj.votes_count %>
+      <% end %>
+    </span>
     
   <% else %>
-    <%= link_to vote_post_or_comment(obj, comment), method: 'post', 
-                                                remote: true,
-                                                class: 'btn btn-mini' do %>
-      <i class='icon-thumbs-up'></i>
-      <span id=<%= vote_id_name(obj, comment) %>>
-        <%= obj.total_votes %>
-      </span>
-    <% end %>
+    <span id="<%= vote_html_id(obj, comment) %>-vote">
+      <%= link_to vote_post_or_comment(obj, comment), method: 'post', 
+                                                  remote: true,
+                                                  class: 'btn btn-mini' do %>
+        <i class='icon-thumbs-up'></i>
+        <%= obj.votes_count %>
+      <% end %>
+    </span>
   <% end %>
 <% else %>
   <a class='btn btn-mini disabled'>
     <i class='icon-thumbs-up'></i>
-    <%= obj.total_votes %>
+    <%= obj.votes_count %>
   </a>
 <% end %>

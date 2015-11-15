@@ -32,7 +32,7 @@ module ApplicationHelper
     end
   end
   
-  def vote_id_name(obj, comment)
-    comment ? "comment-#{obj.id}-votes" : "post-#{obj.id}-votes"
+  def vote_html_id(obj, comment)
+    comment ? "comment-#{obj.id}" : "post-#{obj.id}"
   end
 end
