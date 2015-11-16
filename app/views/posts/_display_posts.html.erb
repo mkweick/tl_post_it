@@ -2,27 +2,27 @@
 
 <div class="post">
   <% @posts.each do |post| %>
-    <div class='well span8 list'>
+    <div class="well span8 list">
       <% unless hide_profile_image %>
         <%= link_to gravatar_for(post.creator, size: 50), 
                                   user_path(post.creator) %>
       <% end %>
       
-      <%= link_to post.title, post_path(post), class: 'title' %>
+      <%= link_to post.title, post_path(post), class: "title" %>
       
       <% if post.categories.any? %>
-        <%= render 'categories/category_tags', obj: post %>
+        <%= render "categories/category_tags", obj: post %>
       <% end %>
       <br/>
       
       <span class="title-info">
         Posted by: <%= link_to author_name(post), user_path(post.creator),
-                                                            class: 'name' %> - 
+                                                            class: "name" %> - 
         <%= time_ago_in_words(post.created_at) %> ago
         
         <% if current_user == post.creator %>
-          <div class='clearfix'>
-            <%= render 'shared/edit_delete_links', obj: post %>
+          <div class="clearfix">
+            <%= render "shared/edit_delete_links", obj: post %>
           </div>
         <% end %>
       </span>
@@ -31,11 +31,11 @@
       <%= post.description %>
       <br/><br/>
       
-      <%= render 'shared/user_votes', obj: post %>
+      <%= render "shared/user_votes", obj: post %>
       
-      <span class='post-comments'></span>
+      <span class="post-comments"></span>
       <%= link_to pluralize(post.comments.size, "Comment"), post_path(post),
-                                                      class: 'btn btn-mini' %>
+                                                      class: "btn btn-mini" %>
     </div>
   <% end %>
 </div>

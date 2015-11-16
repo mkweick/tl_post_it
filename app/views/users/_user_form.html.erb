@@ -1,41 +1,45 @@
 <% hide_password_fields ||= false %>
 
-<div class='well span5 user'>
-  <div class='new-edit-login'>
+<div class="well span5 user">
+  <div class="new-edit-login">
     <%= form_for @user do |f| %>
-      <div class='control-group'>
+      <div class="control-group">
         <%= f.label :username %>
-        <%= f.text_field :username, class: 'username' %>
+        <%= f.text_field :username, class: "username" %>
       </div>
       
       <% unless hide_password_fields %>
-        <div class='control-group'>
+        <div class="control-group">
           <%= f.label :password %>
-          <%= f.password_field :password, class: 'password' %>
+          <%= f.password_field :password, class: "password" %>
         </div>
         
-        <div class='control-group'>
+        <div class="control-group">
           <%= f.label :password_confirmation %>
-          <%= f.password_field :password_confirmation, class: 'password' %>
+          <%= f.password_field :password_confirmation, class: "password" %>
         </div>
       <% end %>
       
-      <div class='control-group'>
+      <div class="control-group">
         <%= f.label :first_name %>
-        <%= f.text_field :first_name, class: 'first-name' %>
+        <%= f.text_field :first_name, class: "first-name" %>
       </div>
       
-      <div class='control-group'>
+      <div class="control-group">
         <%= f.label :last_name %>
-        <%= f.text_field :last_name, class: 'last-name' %>
+        <%= f.text_field :last_name, class: "last-name" %>
       </div>
       
-      <div class='control-group'>
+      <div class="control-group">
         <%= f.label :email %>
-        <%= f.email_field :email, class: 'email' %>
+        <%= f.email_field :email, class: "email" %>
       </div>
       
-      <%= f.submit user_btn_text(@user), class: 'btn btn-small btn-primary' %>
+      <div class="control-group">
+        
+      </div>
+      
+      <%= f.submit user_btn_text(@user), class: "btn btn-small btn-primary" %>
     <% end %>
   </div>
 </div>

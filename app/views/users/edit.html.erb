@@ -1,23 +1,23 @@
-<%= render 'shared/content_title', title: 'Edit Profile' %>
+<%= render "shared/content_title", title: "Edit Profile" %>
 
-<div class='span5.5'>
-  <div class='alert alert-info'>
+<div class="span5.5">
+  <div class="alert alert-info">
     We use
-    <a href="https://en.gravatar.com/support/what-is-gravatar" target='_blank' 
-                                                          class='gravatar-link'>
+    <a href="https://en.gravatar.com/support/what-is-gravatar" target="_blank" 
+                                                          class="gravatar-link">
       <strong>Gravatars!</strong>
     </a>
     To display your profile image you must have a<br> 
     Gravatar assigned to the email address linked to your profile.<br/>
-    <a href="https://en.gravatar.com" target='_blank' class='gravatar-link'>
+    <a href="https://en.gravatar.com" target="_blank" class="gravatar-link">
       <strong>Update/Change your Gravatar Photo</strong>
     </a>
   </div>
-  <div class='alert'>
+  <div class="alert">
     Password Reset capability coming soon!
   </div>
 
-  <%= render 'shared/errors', obj: @user %>
+  <%= render "shared/errors", obj: @user %>
 
-  <%= render 'user_form', hide_password_fields: true %>
+  <%= render "user_form", hide_password_fields: true %>
 </div>

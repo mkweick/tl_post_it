@@ -3,27 +3,27 @@
 <% if logged_in? %>
   <% if obj.user_voted?(current_user) %>
     <span id="<%= vote_html_id(obj, comment) %>-vote">
-      <%= link_to vote_post_or_comment(obj, comment), method: 'delete',
+      <%= link_to vote_post_or_comment(obj, comment), method: "delete",
                                                   remote: true,
-                                                  class: 'btn btn-mini' do %>
-        <i class='icon-thumbs-up icon-blue'></i>
+                                                  class: "btn btn-mini" do %>
+        <i class="icon-thumbs-up icon-blue"></i>
         <%= obj.votes_count %>
       <% end %>
     </span>
     
   <% else %>
     <span id="<%= vote_html_id(obj, comment) %>-vote">
-      <%= link_to vote_post_or_comment(obj, comment), method: 'post', 
+      <%= link_to vote_post_or_comment(obj, comment), method: "post", 
                                                   remote: true,
-                                                  class: 'btn btn-mini' do %>
-        <i class='icon-thumbs-up'></i>
+                                                  class: "btn btn-mini" do %>
+        <i class="icon-thumbs-up"></i>
         <%= obj.votes_count %>
       <% end %>
     </span>
   <% end %>
 <% else %>
-  <a class='btn btn-mini disabled'>
-    <i class='icon-thumbs-up'></i>
+  <a class="btn btn-mini disabled">
+    <i class="icon-thumbs-up"></i>
     <%= obj.votes_count %>
   </a>
 <% end %>

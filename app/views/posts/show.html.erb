@@ -1,45 +1,45 @@
-<div class='span8 post'>
-  <div class='post-title'>
+<div class="span8 post">
+  <div class="post-title">
     <%= link_to gravatar_for(@post.creator, size: 70), user_path(@post.creator) %>
     
-    <span class='title'><%= @post.title %></span>
+    <span class="title"><%= @post.title %></span>
     
     <% if current_user == @post.creator %>
-       <%= render 'shared/edit_delete_links', obj: @post %>
+       <%= render "shared/edit_delete_links", obj: @post %>
       <br/>
     <% end %>
     
-    <div class='title-info'>
+    <div class="title-info">
       Website: <%= link_to @post.url, fix_external_url(@post.url), 
-                                      target: "_blank", class: 'url' %>
+                                      target: "_blank", class: "url" %>
       <br/>
       
       By: <%= link_to author_name_caps(@post), user_path(@post.creator),
-                                                          class: 'name' %>
-      <span class='date'>
+                                                          class: "name" %>
+      <span class="date">
         <%= format_date(@post) %>
       </span>
       
-      <%= render 'shared/user_votes', obj: @post %>
+      <%= render "shared/user_votes", obj: @post %>
       
       <% if @post.categories.any? %>
-        <%= render 'categories/category_tags', obj: @post %>
+        <%= render "categories/category_tags", obj: @post %>
       <% end %>
     </div>
     <hr/>
   </div>
 
-  <div class='post-info'>
+  <div class="post-info">
     <%= @post.description %>
     <hr/>
     
     <% if logged_in? %>
-      <%= render 'comments/comment_form' %>
+      <%= render "comments/comment_form" %>
     <% end %>
     
     <% if @comments.any? %>
       <h5>Comments:</h5>
-      <%= render 'comments/display_comments', comment_post: nil %>
+      <%= render "comments/display_comments", comment_post: nil %>
     <% end %>
   </div>
 </div>
