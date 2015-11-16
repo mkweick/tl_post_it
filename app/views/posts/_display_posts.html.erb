@@ -33,7 +33,7 @@
       
       <%= render 'shared/user_votes', obj: post %>
       
-      <span class='vote-comment-space'></span>
+      <span class='post-comments'></span>
       <%= link_to pluralize(post.comments.size, "Comment"), post_path(post),
                                                       class: 'btn btn-mini' %>
     </div>

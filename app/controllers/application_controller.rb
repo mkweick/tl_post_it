@@ -20,7 +20,7 @@ class ApplicationController < ActionController::Base
     end
   end
   
-  def require_obj_owner(obj)
+  def require_creator(obj)
     unless current_user == obj.creator
       flash[:error] = "You can't edit/delete stuff that is not yours!"
       redirect_to root_path

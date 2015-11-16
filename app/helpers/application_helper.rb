@@ -26,13 +26,13 @@ module ApplicationHelper
   
   def vote_post_or_comment(obj, comment)
     if comment
-      vote_post_comment_path(obj.post_id, obj)
+      vote_post_comment_path(obj.post, obj)
     else
       vote_post_path(obj)
     end
   end
   
   def vote_html_id(obj, comment)
-    comment ? "comment-#{obj.id}" : "post-#{obj.id}"
+    comment ? "comment-#{ obj.id }" : "post-#{ obj.slug }"
   end
 end

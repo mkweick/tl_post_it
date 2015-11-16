@@ -3,10 +3,10 @@ class PostsController < ApplicationController
   before_action :set_vote, only: [:vote_delete]
   before_action :require_user, only: [:new, :create, :vote]
   before_action only: [:edit, :update, :destroy] do
-    require_obj_owner(@post)
+    require_creator(@post)
   end
   before_action only: [:vote_delete] do
-    require_obj_owner(@vote)
+    require_creator(@vote)
   end
   
   def index
@@ -73,7 +73,7 @@ class PostsController < ApplicationController
   end
   
   def set_post
-    @post = Post.find(params[:id])
+     @post = Post.find_by slug: params[:id]
   end
   
   def set_vote

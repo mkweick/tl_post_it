@@ -7,6 +7,7 @@ class CreatePosts < ActiveRecord::Migration
       t.text :description
       t.integer :votes_count, default: 0
       t.timestamps null: false
+      t.string :slug, index: true
     end
   end
 end

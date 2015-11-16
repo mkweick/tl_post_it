@@ -9,6 +9,12 @@ class Post < ActiveRecord::Base
   validates :url, presence: true
   validates :description, presence: true
   
+  before_save :generate_slug!
+  
+  def to_param
+    self.slug
+  end
+  
   def self.recent
     order(created_at: :desc)
   end
@@ -19,5 +25,11 @@ class Post < ActiveRecord::Base
   
   def user_voted?(current_user)
     self.votes.where(creator: current_user).any?
+  end
+  
+  private
+  
+  def generate_slug!
+    self.slug = self.title.gsub(" ", "_").downcase
   end
 end

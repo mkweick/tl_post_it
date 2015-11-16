@@ -4,10 +4,10 @@ class CommentsController < ApplicationController
   before_action :set_vote, only: [:vote_delete]
   before_action :require_user, only: [:create, :vote]
   before_action only: [:edit, :update, :destroy] do
-    require_obj_owner(@comment)
+    require_creator(@comment)
   end
   before_action only: [:vote_delete] do
-    require_obj_owner(@vote)
+    require_creator(@vote)
   end
 
   def create
@@ -59,7 +59,7 @@ class CommentsController < ApplicationController
   private
   
   def set_post
-    @post = Post.find(params[:post_id])
+    @post = Post.find_by slug: params[:post_id]
   end
   
   def set_comment
