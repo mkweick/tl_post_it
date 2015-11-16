@@ -15,6 +15,10 @@ class Post < ActiveRecord::Base
     self.slug
   end
   
+  def generate_slug!
+    self.slug = self.title.gsub(" ", "_").downcase
+  end
+  
   def self.recent
     order(created_at: :desc)
   end
@@ -25,9 +29,5 @@ class Post < ActiveRecord::Base
   
   def user_voted?(current_user)
     self.votes.where(creator: current_user).any?
-  end
-  
-  def generate_slug!
-    self.slug = self.title.gsub(" ", "_").downcase
   end
 end
