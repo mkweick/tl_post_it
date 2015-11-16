@@ -27,8 +27,6 @@ class Post < ActiveRecord::Base
     self.votes.where(creator: current_user).any?
   end
   
-  private
-  
   def generate_slug!
     self.slug = self.title.gsub(" ", "_").downcase
   end
