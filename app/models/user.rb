@@ -14,9 +14,18 @@ class User < ActiveRecord::Base
   validates :first_name, presence: true
   validates :last_name, presence: true
   validates :email, presence: true, uniqueness: { case_sensitive: false }
+  validates :time_zone, presence: true
   
   def to_param
     self.username
+  end
+  
+  def username=(s)
+    write_attribute(:username, s.to_s.downcase)
+  end
+  
+  def email=(s)
+    write_attribute(:email, s.to_s.downcase)
   end
   
   def first_name=(s)

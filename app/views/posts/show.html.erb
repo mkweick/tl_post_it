@@ -17,7 +17,7 @@
       By: <%= link_to author_name_caps(@post), user_path(@post.creator),
                                                           class: "name" %>
       <span class="date">
-        <%= format_date(@post) %>
+        <%= display_date( set_correct_tz(@post.created_at) ) %>
       </span>
       
       <%= render "shared/user_votes", obj: @post %>
