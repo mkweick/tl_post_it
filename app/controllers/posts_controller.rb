@@ -31,6 +31,11 @@ class PostsController < ApplicationController
   def show
     @comment = Comment.new
     @comments = @post.comments.votes_then_recent
+    
+    respond_to do |format|
+      format.html
+      format.json { render json: @post }
+    end
   end
   
   def edit; end
@@ -58,11 +63,15 @@ class PostsController < ApplicationController
   end
   
   def vote_delete
-    @vote.destroy
-    
-    respond_to do |format|
-      format.html { redirect_to :back }
-      format.js
+    if @vote
+      @vote.destroy
+      
+      respond_to do |format|
+        format.html { redirect_to :back }
+        format.js
+      end
+    else
+      
     end
   end
   

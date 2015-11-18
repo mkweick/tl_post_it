@@ -11,8 +11,9 @@ gem 'bootstrap-sass', '~> 2.3.2.0'
 
 gem 'jquery-rails'
 gem 'turbolinks'
-gem 'jbuilder',       '~> 1.2'
-gem 'bcrypt-ruby',    '~> 3.0.0'
+gem 'jbuilder',             '~> 1.2'
+gem 'bcrypt-ruby',          '~> 3.0.0'
+gem 'voteable_gem_mweick',  '0.1.1'
 
 group :doc do
   gem 'sdoc', require: false

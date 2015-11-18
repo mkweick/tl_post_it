@@ -3,14 +3,14 @@
 <% if comment %>
   <%= link_to "", post_comment_path(obj.post, obj), 
                         method: "delete",
-                        confirm: "Are you sure you want to delete?",
+                        data: { confirm: "Are you sure you want to delete?" },
                         class: "icon-remove pull-right" %>
                         
   <%= link_to "", edit_post_comment_path(obj.post, obj), 
 		            			  class: "icon-edit pull-right" %>
 <% else %>
   <%= link_to "", obj, method: "delete",
-                     confirm: "Are you sure you want to delete?",
+                     data: { confirm: "Are you sure you want to delete?" },
                      class: "icon-remove pull-right" %>
                      
   <%= link_to "", edit_post_path(obj), class: "icon-edit pull-right" %>
