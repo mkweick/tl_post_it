@@ -16,8 +16,8 @@
     <br/><br/>
     
     <p class="comment-info">
-      <%= link_to author_name(comment), user_path(comment.creator), 
-                                                      class: "name" %>
+      <%= link_to comment.creator.username, user_path(comment.creator), 
+                                                      class: "username" %>
       <% if show_post_link %>
         <span class="post">  
           commented on post <%= link_to comment.post.title, 

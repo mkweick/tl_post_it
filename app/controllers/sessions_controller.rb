@@ -13,7 +13,7 @@ class SessionsController < ApplicationController
         user.generate_pin!
         user.send_pin_to_twilio
         session[:username] = user.username
-        session[:pin_attempts_left] = 5
+        session[:pin_attempts_left] = 3
         redirect_to pin_path
       else
         session[:user_id] = user.id
@@ -48,15 +48,15 @@ class SessionsController < ApplicationController
       else
         session[:pin_attempts_left] -= 1
         if session[:pin_attempts_left] > 0
-          flash['error'] = "You've entered an incorrect pin, you have #{session[:pin_attempts_left]} 
+          flash['error'] = "Incorrect pin, you have #{session[:pin_attempts_left]} 
                             #{'submission'.pluralize(session[:pin_attempts_left])}
                             left"
           redirect_to pin_path
         else
           session[:pin_attempts_left] = nil
           user.update_column(:pin, nil)
-          flash['error'] = "You entered the wrong pin 5 times. Your pin has been 
-                          cleared to protect your profile, login again."
+          flash['error'] = "For security purposes your pin has been cleared to 
+                            protect your account, please login again."
           redirect_to login_path
         end
       end

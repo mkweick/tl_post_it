@@ -2,12 +2,8 @@ class PostsController < ApplicationController
   before_action :set_post, except: [:index, :new, :create]
   before_action :set_vote, only: [:vote_delete]
   before_action :require_user, only: [:new, :create, :vote]
-  before_action only: [:edit, :update, :destroy] do
-    require_creator(@post)
-  end
-  before_action only: [:vote_delete] do
-    require_creator(@vote)
-  end
+  before_action only: [:edit, :update, :destroy] { require_creator(@post) }
+  before_action only: [:vote_delete] { require_creator(@vote) }
   
   def index
     @posts = Post.all.votes_then_recent

@@ -98,7 +98,7 @@ GEM
       json (~> 1.7, >= 1.7.7)
       rdoc (~> 4.0)
     slop (3.6.0)
-    sluggable_gem_mweick (0.1.0)
+    sluggable_gem_mweick (0.1.1)
     sprockets (2.12.4)
       hike (~> 1.2)
       multi_json (~> 1.0)
@@ -143,7 +143,7 @@ DEPENDENCIES
   rails_12factor
   sass-rails (~> 4.0.0)
   sdoc
-  sluggable_gem_mweick (= 0.1.0)
+  sluggable_gem_mweick (= 0.1.1)
   sqlite3
   turbolinks
   twilio-ruby

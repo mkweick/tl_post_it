@@ -12,7 +12,7 @@ class UsersController < ApplicationController
     
     if @user.save
       session[:user_id] = @user.id
-      flash['notice'] = "Welcome to Postit #{@user.first_name}! Create your 
+      flash['notice'] = "Welcome to Postit #{@user.username}! Create your 
                         first post by clicking New Post above!"
       redirect_to root_path
     else
@@ -41,8 +41,7 @@ class UsersController < ApplicationController
   
   def user_params
     params.require(:user).permit(:username, :password, :password_confirmation,
-                                  :first_name, :last_name, :email, :time_zone,
-                                  :phone)
+                                  :email, :time_zone, :phone)
   end
   
   def set_user

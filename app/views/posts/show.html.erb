@@ -14,8 +14,8 @@
                                       target: "_blank", class: "url" %>
       <br/>
       
-      By: <%= link_to author_name_caps(@post), user_path(@post.creator),
-                                                          class: "name" %>
+      By: <%= link_to @post.creator.username.upcase, user_path(@post.creator),
+                                                          class: "username" %>
       <span class="date">
         <%= display_date( set_correct_tz(@post.created_at) ) %>
       </span>

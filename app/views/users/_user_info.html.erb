@@ -2,7 +2,7 @@
   <col width="130">
   <tr>
     <td><strong>Name:</strong></td>
-    <td><%= "#{@user.first_name} #{@user.last_name}" %></td>
+    <td><%= "#{@user.username}" %></td>
   </tr>
   <tr>
     <td><strong>Member Since:</strong></td>
@@ -22,7 +22,7 @@
         <% if @user.posts.any? %>
           <%= get_recent_post(@user) %>
         <% else %>
-          <%= @user.first_name %> has no posts
+          <%= @user.username %> has no posts
         <% end %>
     </td>
   </tr>

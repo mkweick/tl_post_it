@@ -16,8 +16,8 @@
       <br/>
       
       <span class="title-info">
-        Posted by: <%= link_to author_name(post), user_path(post.creator),
-                                                            class: "name" %> - 
+        Posted by: <%= link_to post.creator.username, user_path(post.creator),
+                                                            class: "username" %> - 
         <%= time_ago_in_words(post.created_at) %>
         
         <% if current_user == post.creator %>
