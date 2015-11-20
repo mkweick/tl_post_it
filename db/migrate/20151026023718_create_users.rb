@@ -7,6 +7,8 @@ class CreateUsers < ActiveRecord::Migration
       t.string :last_name
       t.string :email
       t.string :time_zone
+      t.string :phone
+      t.string :pin
       t.timestamps null: false
     end
   end

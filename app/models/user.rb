@@ -35,5 +35,23 @@ class User < ActiveRecord::Base
   def last_name=(s)
     write_attribute(:last_name, s.to_s.capitalize)
   end
-
+  
+  def two_factor_auth?
+    !self.phone.nil?
+  end
+  
+  def generate_pin!
+    self.update_column(:pin, rand(10 ** 6))
+  end
+  
+  def send_pin_to_twilio
+    account_sid = 'AC2a7dd8e136d95d430f92e4dbcc896cd5' 
+    auth_token = '784a94e4b0ceb7214d0e7ee680c504d6' 
+    
+    client = Twilio::REST::Client.new(account_sid, auth_token)
+    
+    msg = "Your Postit! login pin is: #{self.pin}"
+    client.account.messages.create({ :from => '+17163010509', :to => self.phone,
+                                     :body => msg })
+  end
 end
