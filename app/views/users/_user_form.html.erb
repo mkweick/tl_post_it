@@ -5,7 +5,7 @@
     <%= form_for @user do |f| %>
       <div class="control-group">
         <%= f.label :username %>
-        <%= f.text_field :username, class: "username" %>
+        <%= f.text_field :username, autofocus: true, class: "username" %>
       </div>
       
       <% unless hide_password_fields %>

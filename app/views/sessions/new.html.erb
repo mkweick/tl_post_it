@@ -5,7 +5,8 @@
     <%= form_tag "/login" do %>
       <div class="control-group">
         <%= label_tag :username %>
-        <%= text_field_tag :username, params[:username], class: "username" %>
+        <%= text_field_tag :username, params[:username], autofocus: true,
+                                                          class: "username" %>
       </div>
       
       <div class="control-group">
