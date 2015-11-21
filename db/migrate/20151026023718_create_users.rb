@@ -6,6 +6,7 @@ class CreateUsers < ActiveRecord::Migration
       t.string :email
       t.string :time_zone
       t.string :phone
+      t.boolean :two_factor
       t.string :pin
       t.timestamps null: false
     end

@@ -9,14 +9,13 @@ class SessionsController < ApplicationController
     user = User.find_by(username: params[:username].downcase)
     
     if user && user.authenticate(params[:password])
-      if user.two_factor_auth?
+      if user.two_factor
         user.generate_pin!
         user.send_pin_to_twilio
-        session[:username] = user.username
-        session[:pin_attempts_left] = 3
+        set_auth_session_vars(user)
         redirect_to pin_path
       else
-        session[:user_id] = user.id
+        login_user(user)
         redirect_to root_path
       end
     else
@@ -27,7 +26,7 @@ class SessionsController < ApplicationController
   
   def destroy
     if logged_in?
-      session[:user_id] = nil
+      session.delete(:user_id)
       flash['notice'] = "You have been logged out!"
       redirect_to root_path
     else
@@ -40,22 +39,21 @@ class SessionsController < ApplicationController
       user = User.find_by(username: session[:username])
       
       if user && user.pin == params[:pin]
-        session[:pin_attempts_left] = nil
-        session[:username] = nil
-        user.update_column(:pin, nil)
-        session[:user_id] = user.id
+        clear_auth_session_vars
+        user.clear_user_pin!
+        login_user(user)
         redirect_to root_path
       else
         session[:pin_attempts_left] -= 1
         if session[:pin_attempts_left] > 0
-          flash['error'] = "Incorrect pin, you have #{session[:pin_attempts_left]} 
+          flash['error'] = "Incorrect pin. You have #{session[:pin_attempts_left]} 
                             #{'submission'.pluralize(session[:pin_attempts_left])}
-                            left"
+                            left."
           redirect_to pin_path
         else
-          session[:pin_attempts_left] = nil
-          user.update_column(:pin, nil)
-          flash['error'] = "For security purposes your pin has been cleared to 
+          clear_auth_session_vars
+          user.clear_user_pin!
+          flash['error'] = "For security purposes, your pin has been cleared to 
                             protect your account, please login again."
           redirect_to login_path
         end
@@ -69,5 +67,15 @@ class SessionsController < ApplicationController
     unless session[:username]
       redirect_to root_path
     end
+  end
+  
+  def set_auth_session_vars(user)
+    session[:username] = user.username
+    session[:pin_attempts_left] = 3
+  end
+  
+  def clear_auth_session_vars
+    session.delete(:username)
+    session.delete(:pin_attempts_left)
   end
 end

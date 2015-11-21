@@ -3,12 +3,8 @@ class CommentsController < ApplicationController
   before_action :set_comment, except: [:index, :new, :create, :show]
   before_action :set_vote, only: [:vote_delete]
   before_action :require_user, only: [:create, :vote]
-  before_action only: [:edit, :update, :destroy] do
-    require_creator(@comment)
-  end
-  before_action only: [:vote_delete] do
-    require_creator(@vote)
-  end
+  before_action only: [:edit, :update, :destroy] { require_creator(@comment) }
+  before_action only: [:vote_delete] { require_creator(@vote) }
 
   def create
     @comment = @post.comments.build(comment_params)

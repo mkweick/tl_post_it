@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update]
-  before_action :require_owner, only: [:edit, :update]
+  before_action only: [:edit, :update] { require_creator(@user) }
   
   def new
     redirect_to root_path if logged_in?
@@ -11,7 +11,7 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
     
     if @user.save
-      session[:user_id] = @user.id
+      login_user(@user)
       flash['notice'] = "Welcome to Postit #{@user.username}! Create your 
                         first post by clicking New Post above!"
       redirect_to root_path
@@ -25,9 +25,7 @@ class UsersController < ApplicationController
     @comments = @user.comments.votes_then_recent
   end
   
-  def edit
-    
-  end
+  def edit; end
   
   def update
     if @user.update(user_params)
@@ -41,22 +39,10 @@ class UsersController < ApplicationController
   
   def user_params
     params.require(:user).permit(:username, :password, :password_confirmation,
-                                  :email, :time_zone, :phone)
+                                  :email, :time_zone, :phone, :two_factor)
   end
   
   def set_user
     @user = User.find_by(username: params[:id])
-  end
-  
-  def require_owner
-    if logged_in?
-      unless current_user == @user
-        flash['error'] = "You can only edit your own profile"
-        redirect_to root_path
-      end
-    else
-      flash['error'] = "You must be logged in to do that"
-      redirect_to root_path
-    end
   end
 end

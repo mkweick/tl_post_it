@@ -15,4 +15,22 @@
 //= require turbolinks
 //= require_tree .
 //= require bootstrap
+//= require jquery.turbolinks
 
+$(document).ready(function() {
+  if($('#two-factor-cb').is(':checked')) {
+    $('#creator-phone').prop('disabled', false);
+  }
+  else {
+    $('#creator-phone').prop('disabled', true);
+  }
+
+  $('#two-factor-cb').click(function() {
+    if($('#two-factor-cb').is(':checked')) {
+      $('#creator-phone').prop('disabled', false);
+    }
+    else {
+      $('#creator-phone').prop('disabled', true);
+    }
+  });
+});

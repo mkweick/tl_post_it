@@ -52,6 +52,7 @@ ActiveRecord::Schema.define(version: 20151111022943) do
     t.string   "email"
     t.string   "time_zone"
     t.string   "phone"
+    t.boolean  "two_factor"
     t.string   "pin"
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false

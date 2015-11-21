@@ -13,19 +13,21 @@ class ApplicationController < ActionController::Base
     !!current_user
   end
   
+  def login_user(user)
+    session[:user_id] = user.id
+  end
+  
   def require_user
     unless logged_in?
-      flash[:error] = "You must be logged in to do that"
+      flash[:error] = "Please log in or register for an account above!"
       redirect_to root_path
     end
   end
   
   def require_creator(obj)
-    if obj  
-      unless current_user == obj.creator
-        flash[:error] = "You can't edit/delete stuff that is not yours"
-        redirect_to root_path
-      end
+    unless obj && logged_in? && (current_user == obj || current_user == obj.creator)
+      flash[:error] = "Access Denied"
+      redirect_to root_path
     end
   end
 end

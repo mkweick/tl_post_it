@@ -13,6 +13,8 @@ class User < ActiveRecord::Base
   validates :password, on: :create, length: { minimum: 8 }
   validates :email, presence: true, uniqueness: { case_sensitive: false }
   validates :time_zone, presence: true
+  validates :phone, allow_nil: true, uniqueness: { allow_blank: true },
+                    length: { is: 10, message: "must be 10 digits only" }
   
   def to_param
     self.username
@@ -26,8 +28,8 @@ class User < ActiveRecord::Base
     write_attribute(:email, s.to_s.downcase)
   end
   
-  def two_factor_auth?
-    !self.phone.nil?
+  def phone=(s)
+    write_attribute(:phone, s.gsub(/[\D]/, '').to_s)
   end
   
   def generate_pin!
@@ -43,5 +45,9 @@ class User < ActiveRecord::Base
     msg = "Your Postit! login pin is: #{self.pin}"
     client.account.messages.create({ :from => '+17163010509', :to => self.phone,
                                      :body => msg })
+  end
+  
+  def clear_user_pin!
+    self.update_column(:pin, nil)
   end
 end
