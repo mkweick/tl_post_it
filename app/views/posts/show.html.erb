@@ -35,6 +35,11 @@
     
     <% if logged_in? %>
       <%= render "comments/comment_form" %>
+    <% else %>
+      <%= link_to 'Log in', login_path, class: "btn btn-mini" %> 
+      <%= link_to 'Register', register_path, class: "btn btn-mini btn-primary" %> 
+      to post comments.
+      <br/><br/>
     <% end %>
     
     <% if @comments.any? %>

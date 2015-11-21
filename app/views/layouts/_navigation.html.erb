@@ -1,5 +1,5 @@
+<%= link_to image_tag("postit-logo.png", size: '30'), root_path, id: "logo" %>
 <ul class="nav">
-  <li><%= link_to "Postit!", root_path, :class => "brand" %></li>
   <div class="btn-group nav-item">
     <%= link_to "#", class: "btn btn-small dropdown-toggle", 
                             "data-toggle" => "dropdown" do %>
@@ -11,12 +11,9 @@
       <% end %>
     </ul>
   </div>
-  <% if logged_in? %>
-    <div class="nav-item">
-      <li>
-        <%= link_to "New Post", new_post_path, class: "btn btn-small btn-success" %>
-      </li>
-    </div>
+</ul>
+<% if logged_in? %>
+  <ul class="nav pull-right">
     <div class="btn-group nav-item">
       <%= link_to "#", class: "btn btn-small dropdown-toggle", 
                               "data-toggle" => "dropdown" do %>
@@ -43,16 +40,23 @@
         </li>
       </ul>
     </div>
-  <% else %>
-    <div class="nav-item">
+    <div id="nav-new-post" class="nav-item">
       <li>
-        <%= link_to "Register", register_path, class: "btn btn-small btn-success" %>
+        <%= link_to "New Post", new_post_path, class: "btn btn-small btn-primary" %>
       </li>
     </div>
-    <div class="nav-item">
+  </ul>
+<% else %>
+  <ul class="nav pull-right">  
+    <div id="nav-register" class="nav-item">
+      <li>
+        <%= link_to "Register", register_path, class: "btn btn-small btn-primary" %>
+      </li>
+    </div>
+    <div id="nav-login" class="nav-item">
       <li>
         <%= link_to "Login", login_path, class: "btn btn-small" %>
       </li>
     </div>
-  <% end %>
-</ul>
+  </ul>
+<% end %>

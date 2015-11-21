@@ -6,7 +6,8 @@ class PostsController < ApplicationController
   before_action only: [:vote_delete] { require_creator(@vote) }
   
   def index
-    @posts = Post.all.votes_then_recent
+    @posts = Post.all.votes_then_recent.offset(params[:offset]).limit(10)
+    @pages = (Post.all.size.to_f / 10).ceil
   end
   
   def new

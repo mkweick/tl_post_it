@@ -1,0 +1,16 @@
+<% category ||= false %>
+
+<% unless @pages <= 1 %>
+  <div class="pagination pagination-centered">
+    <ul>
+      <li><a href="#">&laquo;</a></li>
+      <% @pages.times do |page| %>
+        <% offset = { offset: (page * 10) } %>
+        
+        <li><%= link_to "#{page + 1}",
+                  (category ? category_path(offset) : posts_path(offset)) %></li>
+      <% end %>
+      <li><a href="#">&raquo;</a></li>
+    </ul>
+  </div>
+<% end %>
