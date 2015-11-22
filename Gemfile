@@ -17,6 +17,7 @@ gem 'jbuilder',             '~> 1.2'
 gem 'bcrypt-ruby',          '~> 3.0.0'
 gem 'voteable_gem_mweick',  '0.1.1'
 gem 'sluggable_gem_mweick', '0.1.1'
+gem 'faker'
 
 group :doc do
   gem 'sdoc', require: false
@@ -26,7 +27,6 @@ group :development do
   gem 'quiet_assets'
   gem 'pry'
   gem 'sqlite3'
-  gem 'faker'
 end
 
 group :production do
