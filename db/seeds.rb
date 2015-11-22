@@ -11,15 +11,23 @@ categories = Category.create([{ name: 'Food' }, { name: 'Programming' },
                               { name: 'Exercise' }, { name: 'News' }, 
                               { name: 'Weather' }])
 
-user = User.create username: "mkweick",
+user = User.create  username: "mkweick",
                     password: "hhockey18",
                     password_confirmation: "hhockey18",
                     email: "mkweick@gmail.com",
                     time_zone: "Eastern Time (US & Canada)" 
 
+9.times do
+  User.create username: Faker::Internet.user_name,
+              password: "hhockey18",
+              password_confirmation: "hhockey18",
+              email: "example-#{n+1}@railstutorial.org",
+              time_zone: "Eastern Time (US & Canada)"
+end
+
 100.times do
-  Post.create(user_id: 1,
+  Post.create user_id: rand(1...11),
               title: Faker::Lorem.words(2).map(&:capitalize).join(' '),
               url: Faker::Internet.url,
-              description: Faker::Lorem.paragraph(8, false, 0))
+              description: Faker::Lorem.paragraph(8, false, 0)
 end
