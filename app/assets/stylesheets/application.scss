@@ -193,6 +193,15 @@ h3 .nav-link {
   margin-left: 70px;
 }
 
+.paginate-bottom {
+  margin-bottom: 200px;
+}
+
+.pagination ul > .active > span {
+  background-color: #1B83CF;
+  color: #FFFFFF;
+}
+
 ///////* COMMENTS *////////////
 .body {
   height: 100px;

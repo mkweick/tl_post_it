@@ -1,16 +1,56 @@
 <% category ||= false %>
+<% small ||= false %>
 
 <% unless @pages <= 1 %>
-  <div class="pagination pagination-centered">
+  <div class="pagination <%= "pagination-mini" if small %> pagination-centered 
+                                        <%= "paginate-bottom" unless small %>">
     <ul>
-      <li><a href="#">&laquo;</a></li>
-      <% @pages.times do |page| %>
-        <% offset = { offset: (page * 10) } %>
-        
-        <li><%= link_to "#{page + 1}",
-                  (category ? category_path(offset) : posts_path(offset)) %></li>
+      <% if params[:page].nil? %>
+        <li class="disabled"><span>&laquo;</span></li>
+      <% elsif ((params[:page].to_i - 1) * 10) == 10 %>
+        <li>
+          <%= link_to "&laquo;".html_safe,
+                                    (category ? category_path : posts_path) %>
+        </li>
+      <% else %>
+        <li>
+          <%= link_to "&laquo;".html_safe,
+                (category ? category_path(page: (params[:page].to_i - 1)) : 
+                            posts_path(page: (params[:page].to_i - 1))) %>
+        </li>
       <% end %>
-      <li><a href="#">&raquo;</a></li>
+      
+      <% @pages.times do |n| %>
+        <% page = { page: (n + 1) } %>
+        <% if (n == 0 && params[:page].nil?) %>
+          <li class="active"><span>1</span></li>
+        <% elsif n == 0 %>
+          <li>
+            <%= link_to "1", (category ? category_path : posts_path) %>
+          </li>
+        <% elsif ((params[:page].to_i - 1) * 10).to_s == (n * Post::POST_PER_PAGE).to_s %>
+          <li class="active"><span><%= "#{n + 1}" %></span></li>
+        <% else %>
+          <li>
+            <%= link_to "#{n + 1}", (category ? category_path(page) : 
+                                                  posts_path(page)) %>
+          </li>
+        <% end %>
+      <% end %>
+      
+      <% if params[:page].nil? %>
+        <li><%= link_to '&raquo;'.html_safe,
+                    (category ? category_path(page: 2) : posts_path(page: 2)) %>
+        </li>
+      <% elsif params[:page].to_i == @pages %>
+        <li class="disabled"><span>&raquo;</span></li>
+      <% else %>
+        <li>
+          <%= link_to "&raquo;".html_safe,
+                (category ? category_path(page: (params[:page].to_i + 1)) : 
+                            posts_path(page: (params[:page].to_i + 1))) %>
+        </li>
+      <% end %>
     </ul>
   </div>
 <% end %>
