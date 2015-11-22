@@ -1,50 +1,54 @@
-<div class="span8 post">
-  <div class="post-title">
-    <%= link_to gravatar_for(@post.creator, size: 70), user_path(@post.creator) %>
-    
-    <span class="title"><%= @post.title %></span>
-    
-    <% if current_user == @post.creator %>
-       <%= render "shared/edit_delete_links", obj: @post %>
-      <br/>
-    <% end %>
-    
-    <div class="title-info">
-      Website: <%= link_to @post.url, fix_external_url(@post.url), 
-                                      target: "_blank", class: "url" %>
-      <br/>
+<div class="post-content">  
+  <div class="span9 post">
+    <div class="post-title">
+      <%= link_to gravatar_for(@post.creator, size: 80), user_path(@post.creator) %>
       
-      By: <%= link_to @post.creator.username.upcase, user_path(@post.creator),
-                                                          class: "username" %>
-      <span class="date">
-        <%= display_date( set_correct_tz(@post.created_at) ) %>
-      </span>
+      <span class="title"><%= @post.title %></span>
       
-      <%= render "shared/user_votes", obj: @post %>
-      
-      <% if @post.categories.any? %>
-        <%= render "categories/category_tags", obj: @post %>
+      <% if current_user == @post.creator %>
+         <%= render "shared/edit_delete_links", obj: @post %>
+        <br/>
       <% end %>
+      <p/>
+      <div class="title-info">
+        Website: <%= link_to @post.url, fix_external_url(@post.url), 
+                                        target: "_blank", class: "url" %>
+        <br/>
+        
+        By: <%= link_to @post.creator.username.upcase, user_path(@post.creator),
+                                                            class: "username" %>
+        <span class="date">
+          <%= display_date( set_correct_tz(@post.created_at) ) %>
+        </span>
+        
+        <%= render "shared/user_votes", obj: @post %>
+        
+        <% if @post.categories.any? %>
+          <%= render "categories/category_tags", obj: @post %>
+        <% end %>
+      </div>
+      <hr/>
     </div>
-    <hr/>
+  
+    <div class="post-info">
+      <%= @post.description %>
+      <hr/>
+    </div>
   </div>
+</div>
 
-  <div class="post-info">
-    <%= @post.description %>
-    <hr/>
-    
-    <% if logged_in? %>
-      <%= render "comments/comment_form" %>
-    <% else %>
-      <%= link_to 'Log in', login_path, class: "btn btn-mini" %> 
-      <%= link_to 'Register', register_path, class: "btn btn-mini btn-primary" %> 
-      to post comments.
-      <br/><br/>
-    <% end %>
-    
-    <% if @comments.any? %>
-      <h5>Comments:</h5>
-      <%= render "comments/display_comments", comment_post: nil %>
-    <% end %>
-  </div>
+<div class="post-comment-section">
+  <% if logged_in? %>
+    <%= render "comments/comment_form" %>
+  <% else %>
+    <%= link_to 'Log in', login_path, class: "btn btn-mini" %> 
+    <%= link_to 'Register', register_path, class: "btn btn-mini btn-primary" %> 
+    to post comments.
+    <br/><br/>
+  <% end %>
+  
+  <% if @comments.any? %>
+    <h5>Comments:</h5>
+    <%= render "comments/display_comments", comment_post: nil %>
+  <% end %>
 </div>

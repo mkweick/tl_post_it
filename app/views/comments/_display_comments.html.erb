@@ -20,9 +20,8 @@
                                                       class: "username" %>
       <% if show_post_link %>
         <span class="post">  
-          commented on post <%= link_to comment.post.title, 
-                                    post_path(comment.post),
-                                    class: "post-link" %>
+          commented on <%= link_to comment.post.title, post_path(comment.post),
+                                                          class: "post-link" %>
         </span>
       <% end %>
       

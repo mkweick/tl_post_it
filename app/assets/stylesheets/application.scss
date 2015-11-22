@@ -14,6 +14,10 @@
 
  @import "bootstrap";
 
+.container {
+  width: 770px;
+}
+
 .quiet {
   color: #ababab;
 }
@@ -29,6 +33,18 @@ div.comment_votes {
   padding: 10px;
 }
 
+.span6 {
+  margin-left: 0;
+}
+
+.span8 {
+  margin-left: 0;
+}
+
+.span9 {
+  margin-left: 0;
+}
+
 //////* NAV BAR *///////////
 .navbar-inner {
   padding-top: 5px;
@@ -36,7 +52,7 @@ div.comment_votes {
 }
 
 .nav-center {
-  width: 940px;
+  width: 770px;
   margin-left: auto;
   margin-right: auto;
 }
@@ -49,7 +65,7 @@ div.comment_votes {
   position: absolute;
   left: 50%;
   font-size: 20px;
-  margin: 3px 0 0 -20px;
+  margin: 3px 0 0 -15px;
   text-decoration: none;
 }
 
@@ -161,6 +177,18 @@ h3 .nav-link {
   }
 }
 
+.paginate-posts {
+  margin-left: 60px;
+}
+
+.post-content {
+  margin-left: 40px;
+}
+
+.post-comment-section {
+  margin-left: 130px;
+}
+
 ///////* COMMENTS *////////////
 .body {
   height: 100px;
@@ -187,7 +215,7 @@ h3 .nav-link {
 
 /////////* USERS *///////////////
 .user {
-  .new-edit-login {
+  .new-edit {
     .username {
       width: 360px;
     }
@@ -207,6 +235,14 @@ h3 .nav-link {
       margin-right: 20px;
     }
   }
+  .login {
+    .username {
+      width: 360px;
+    }
+    .password {
+      width: 360px;
+    }
+  }
 }
 
 .gravatar-link {
@@ -223,6 +259,34 @@ h3 .nav-link {
   .latest-post {
     text-decoration: none;
   }
+}
+
+.new-user {
+  margin-left: 155px;
+}
+
+.edit-user {
+  margin-left: 155px;
+}
+
+.show-user {
+  margin-left: 50px;
+}
+
+.login-user {
+  margin-left: 180px;
+}
+
+.pin-login {
+  margin-left: 210px;
+}
+
+.pin {
+  width: 275px;
+}
+
+.pin-submit {
+  margin-left: 110px;
 }
 
 ///////* CATEGORIES *////////////

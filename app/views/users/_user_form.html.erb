@@ -1,7 +1,7 @@
 <% hide_password_fields ||= false %>
 
 <div class="well span5 user">
-  <div class="new-edit-login">
+  <div class="new-edit">
     <%= form_for @user do |f| %>
       <div class="control-group">
         <%= f.label :username %>
@@ -33,8 +33,7 @@
       </div>
       <br/>
       <div class="control-group">
-        <%= f.check_box :two_factor, id: "two-factor-cb",
-                                     class: "pull-left two-factor" %>
+        <%= f.check_box :two_factor, class: "pull-left two-factor" %>
         <%= f.label :two_factor, "Enable Two-Factor Authentication" %>
       </div>
       

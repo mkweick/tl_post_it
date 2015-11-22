@@ -1,15 +1,13 @@
 <%= render "shared/content_title", title: "#{ @user.username }" %>
 
-<div class="span8">
+<div class="span9 show-user">
   <div class="well">
     <%= gravatar_for(@user, size: 110) %>
     <%= render "user_info" %>
   </div>
   <br/>
   <h4>Activity:</h4>
-</div>
 
-<div class="span9">
   <ul class="nav nav-tabs">
     <li class="active"><a href="#posts" data-toggle="tab">
       Posts (<%= @user.posts.size %>)

@@ -1,5 +1,7 @@
 <%= render "shared/content_title", title: category_title(@category) %>
 
-<%= render "posts/display_posts" %>
+<div class="paginate-posts">
+  <%= render "posts/display_posts" %>
+</div>
 
 <%= render "posts/paginate", category: true %>
