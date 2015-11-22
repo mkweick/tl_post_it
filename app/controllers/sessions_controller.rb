@@ -1,5 +1,6 @@
 class SessionsController < ApplicationController
   before_action :require_auth_session_var, only: [:pin]
+  before_action :store_previous_url, only: [:new]
   
   def new
     redirect_to root_path if logged_in?
@@ -16,7 +17,7 @@ class SessionsController < ApplicationController
         redirect_to pin_path
       else
         login_user(user)
-        redirect_to :back
+        redirect_to (session[:previous_url] || root_path)
       end
     else
       flash.now['error'] = "You have entered an invalid username or password"
@@ -42,7 +43,7 @@ class SessionsController < ApplicationController
         clear_auth_session_vars
         user.clear_user_pin!
         login_user(user)
-        redirect_to :back
+        redirect_to (session[:previous_url] || root_path)
       else
         session[:pin_attempts_left] -= 1
         if session[:pin_attempts_left] > 0
@@ -62,6 +63,10 @@ class SessionsController < ApplicationController
   end
   
   private
+  
+  def store_previous_url
+    session[:previous_url] = request.referer
+  end
   
   def require_auth_session_var
     unless session[:username]

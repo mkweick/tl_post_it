@@ -18,7 +18,23 @@
 //= require jquery.turbolinks
 
 $(document).ready(function() {
-  if($('.two-factor').is(':checked')) {
+  if ($('.pagination')) {
+    $(window).scroll(function() {
+      var url = $('.pagination .next-page').attr('href');
+      if (url && $(window).scrollTop() > $(document).height() - $(window).height() - 1000) {
+        $('.pagination').html('<img src="/assets/ajax-loader.gif" alt="Loading more posts..." />');
+        return $.getScript(url);
+      }
+      else if (!url && $(window).scrollTop() > $(document).height() - $(window).height() - 1000) {
+        $('.pagination').html('<div class="span8 posts-end">No more posts to load. <a href="#top">Jump to Top of Page</a></div>');
+      }
+    });
+    return $(window).scroll();
+  }
+});
+
+$(document).ready(function() {
+  if ($('.two-factor').is(':checked')) {
     $('#creator-phone').prop('disabled', false);
   }
   else {
