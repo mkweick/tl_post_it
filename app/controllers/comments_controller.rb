@@ -25,6 +25,7 @@ class CommentsController < ApplicationController
     if @comment.update(comment_params)
       redirect_to post_path(@post)
     else
+      @post.reload
       render :edit
     end
   end

@@ -6,7 +6,7 @@ class PostsController < ApplicationController
   before_action only: [:vote_delete] { require_creator(@vote) }
   
   def index
-    @posts = Post.all.votes_then_recent.offset(params[:offset]).limit(10)
+    @posts = Post.all.votes_then_recent.offset((params[:page].to_i - 1) * 10).limit(10)
     @pages = (Post.all.size.to_f / 10).ceil
   end
   
@@ -39,8 +39,9 @@ class PostsController < ApplicationController
   
   def update
     if @post.update(post_params)
-      redirect_to post_path
+      redirect_to post_path(@post)
     else
+      @post.reload
       render :edit
     end
   end
