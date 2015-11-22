@@ -95,10 +95,10 @@ h3 .nav-link {
 .post {
   .new-edit {
     .title {
-      width: 300px;
+      width: 600px;
     }
     .url {
-      width: 300px;
+      width: 600px;
     }
     .description {
       height: 100px;
@@ -181,12 +181,16 @@ h3 .nav-link {
   margin-left: 60px;
 }
 
+.new-edit-post {
+  margin-left: 55px;
+}
+
 .post-content {
   margin-left: 40px;
 }
 
 .post-comment-section {
-  margin-left: 130px;
+  margin-left: 70px;
 }
 
 ///////* COMMENTS *////////////
@@ -211,6 +215,10 @@ h3 .nav-link {
   .post-link {
     text-decoration: none;
   }
+}
+
+.edit-comment {
+  margin-left: 130px;
 }
 
 /////////* USERS *///////////////

@@ -1,5 +1,6 @@
 <%= render "shared/content_title", title: "New Post" %>
 
-<%= render "shared/errors", obj: @post %>
-
-<%= render "post_form" %>
+<div class="new-edit-post">
+  <%= render "shared/errors", obj: @post %>
+  <%= render "post_form" %>
+</div>
