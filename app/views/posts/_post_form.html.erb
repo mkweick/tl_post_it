@@ -3,7 +3,9 @@
     <%= form_for @post do |f| %>
       <div class="control-group">
         <%= f.label :title %>
-        <%= f.text_field :title, autofocus: true, class: "title" %>
+        <%= f.text_field :title, autofocus: true,
+                                 placeholder: "Min 6 / Max 20 Characters",
+                                 class: "title" %>
       </div>
       
       <div class="control-group">

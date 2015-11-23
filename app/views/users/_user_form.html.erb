@@ -5,13 +5,16 @@
     <%= form_for @user do |f| %>
       <div class="control-group">
         <%= f.label :username %>
-        <%= f.text_field :username, autofocus: true, class: "username" %>
+        <%= f.text_field :username, autofocus: true,
+                                    placeholder: "Minimum of 3 characters",
+                                    class: "username" %>
       </div>
       
       <% unless hide_password_fields %>
         <div class="control-group">
           <%= f.label :password %>
-          <%= f.password_field :password, class: "password" %>
+          <%= f.password_field :password, placeholder: "Minimum of 8 characters",
+                                                            class: "password" %>
         </div>
         
         <div class="control-group">

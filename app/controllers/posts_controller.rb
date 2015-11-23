@@ -9,7 +9,10 @@ class PostsController < ApplicationController
     if params[:page].nil?
       @posts = Post.all.votes_then_recent.limit(10)
     else
-      @posts = Post.all.votes_then_recent.offset((params[:page].to_i - 1) * 10).limit(10)
+      @posts = Post.all
+                   .votes_then_recent
+                   .offset((params[:page].to_i - 1) * 10)
+                   .limit(10)
     end
     
     @pages = (Post.all.size.to_f / 10).ceil
